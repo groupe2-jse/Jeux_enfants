@@ -6,10 +6,17 @@
 
 package zine;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Expression zine is undefined on line 12, column 14 in Templates/Classes/Class.java.
  */
-public class Question_zine {
+public class Question_zine extends JPanel{
+
+    public Question_zine() {
+        
+        
+    }
 
 }
