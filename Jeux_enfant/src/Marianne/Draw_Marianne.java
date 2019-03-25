@@ -7,45 +7,49 @@
 package Marianne;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Expression Marianne is undefined on line 12, column 14 in Templates/Classes/Class.java.
  */
-public class Draw_Marianne extends JFrame{
+public class Draw_Marianne extends JPanel{
     
-    Button delete, color, choicePen ; 
-    JPanel draw ; 
-    JMenu menu ; 
+    JPanel panel, menu; // declaration objet
+    Bouton color, delete, choicePen ; 
+    boolean b = true ; 
    
-
-    
     public Draw_Marianne()
     {
-        draw = new JPanel (); 
-        menu = new JMenu (); 
-        delete = new Button() ; 
-        color = new Button() ; 
-        choicePen = new Button() ; 
         
-        initDraw(); 
+        //this.setTitle("Dessin"); // titre de Jpanel
         
-        //this.pack(); // pour avoir une taille auto
-        this.setResizable(true);// la taille est gelee
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // le programme ferme a la fermeture de l'IG
-        this.setVisible(true);// Formulaire visible
+        panel = new JPanel() ; // def panel principal
+        menu = new JPanel(); 
+         color = new Bouton("Couleur") ; 
+         delete = new Bouton("Effacer") ; 
+         choicePen = new Bouton("Forme_du_crayon") ; 
+         panel.setLayout(new BorderLayout());
+         menu.setLayout(new BorderLayout());
+         menu.add(color, BorderLayout.NORTH) ; 
+         menu.add(delete, BorderLayout.SOUTH) ; 
+         menu.add(choicePen, BorderLayout.CENTER); 
+         panel.add(menu,BorderLayout.WEST ) ; 
         
-      
+         
+         
+         this.initDraw(); 
+         
+       
+        
     }
     
    private void initDraw()
    {
-       draw.setLayout(new BorderLayout()) ;
+      
+         this.add(new DrawingPanel()); 
+     
    }
     
     
