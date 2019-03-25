@@ -38,6 +38,7 @@ public class CalculNiveau1_Lorenzo extends JPanel{
             num2=GenerateRandomNumbers();
         }
         calcul=toString();
+        this.setName("Calcul niveau 1");
     }
     private int GenerateRandomNumbers(){
         int num=rd.nextInt(8)+1;

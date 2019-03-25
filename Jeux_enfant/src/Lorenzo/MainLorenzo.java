@@ -22,7 +22,8 @@ public class MainLorenzo {
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel jp1 = new CalculAndTextField(c.getCalcul(), 2);
-        jf.add(jp1);
+        c.add(jp1);
+        jf.add(c);
         jf.pack();
         jf.setVisible(true);
         
