@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class MainLorenzo {
     
     public static void main(String[] args) {
-        CalculNiveau1_Lorenzo c = new CalculNiveau1_Lorenzo();
+        Calcul_Lorenzo c = new Calcul_Lorenzo(1);
         //System.out.println(c.getCalcul());
         JFrame jf = new JFrame("Calcul");
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
