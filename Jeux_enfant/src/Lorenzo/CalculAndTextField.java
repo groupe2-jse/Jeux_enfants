@@ -7,6 +7,7 @@
 package Lorenzo;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,10 +19,13 @@ import javax.swing.JTextField;
 public class CalculAndTextField extends JPanel{
     JLabel calcul;
     JTextField textField;
-    
+    Font font;
     public CalculAndTextField(String calcul, int size){
+        this.font = new Font("ComicSansMS", Font.BOLD, 50);
         this.calcul= new JLabel(calcul);
+        this.calcul.setFont(font);
         this.textField= new JTextField(size);
+        this.textField.setFont(font);
         this.setLayout(new BorderLayout());
         this.add(this.calcul, BorderLayout.WEST);
         this.add(this.textField, BorderLayout.EAST);
