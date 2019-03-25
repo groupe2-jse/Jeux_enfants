@@ -14,13 +14,11 @@ import javax.swing.JPanel;
  *
  * @author Expression Marianne is undefined on line 12, column 14 in Templates/Classes/Class.java.
  */
-public class DrawingPanel extends JPanel
-{
+public class DrawingPanel extends JPanel{
 
     public DrawingPanel() {
         
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.setBorder(BorderFactory.createTitledBorder("Adresse"));
+        
     }
     
     
