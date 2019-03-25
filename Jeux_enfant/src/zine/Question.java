@@ -18,7 +18,7 @@ public class Question {
    
     private String reponse;
 
-    public Question(Integer id_question,Integer niveau_question,String questions,String reponse) {
+    public Question(int id_question,String questions,String reponse,int niveau_question) {
         this.id_question= id_question;
         this.niveau_question = niveau_question;
         this.questions= questions;

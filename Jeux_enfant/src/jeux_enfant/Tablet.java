@@ -9,8 +9,11 @@ package jeux_enfant;
 import Yann.Menu_Yann;
 import Yann.Onglets;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -49,7 +52,10 @@ public class Tablet extends JFrame{
         
         
         //Ajout des onglets
-        this.add(new Onglets(),BorderLayout.CENTER);
+        JTabbedPane onglets = new Onglets();
+        
+        
+        contenu.add(onglets,BorderLayout.CENTER);
         
     }
 
