@@ -9,7 +9,7 @@ package Pkg_DAO;
  *
  * @author stagldnr
  */
-//import static Pkg_DAO.DAO_Julien.connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ import zine.Question;
 
 public class Question_Julien implements DAO_Julien<Question>{
     
-    private String table = "Question";
+    private String table = "Questions";
     
     
     @Override
@@ -30,7 +30,7 @@ public class Question_Julien implements DAO_Julien<Question>{
         Question retObj = null;
         String sql = "SELECT * FROM "
                + table
-               + " WHERE id_question_Questions=?";
+               + " WHERE id_question=?";
         try{
            PreparedStatement pstmt = connection.prepareStatement(sql);
            pstmt.setInt(1, id_question);
@@ -43,7 +43,7 @@ public class Question_Julien implements DAO_Julien<Question>{
            }
        }
        catch(SQLException ex){
-           Logger.getLogger(DAO_Julien.class.getName()).log(Level.SEVERE,null,ex);
+           Logger.getLogger(Question_Julien.class.getName()).log(Level.SEVERE,null,ex);
        }
         return retObj;
     }
@@ -53,7 +53,7 @@ public class Question_Julien implements DAO_Julien<Question>{
         Question retObj = null;
         String sql = "INSERT INTO " +
                     table +
-                    "(question , reponse , niveau_question)"
+                    "(questions , reponse , niveau_question)"
                     + " VALUES(?,?,?)" ;
         
         try {
@@ -80,7 +80,7 @@ public class Question_Julien implements DAO_Julien<Question>{
     public void deleted(Question obj) {
 
         try {
-            String sql = "DELETE FROM "+ table+ " WHERE id_questions_Questions=?";
+            String sql = "DELETE FROM "+ table+ " WHERE id_question_question=?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1, obj.getId_question());
             int nombreLigneImpactees = pstmt.executeUpdate();
@@ -94,12 +94,12 @@ public class Question_Julien implements DAO_Julien<Question>{
     public Question update(Question obj) {
 
         Question retObj = null;
-        String sql = "UPDATE "
+        String sql = " UPDATE "
                 +table
                 +" SET questions=?,"
                 +" reponse=?,"
                 +" niveau_question=?,"
-                +" WHERE id_question_Questions=?";
+                +" WHERE id_question_question=?";
   
 
         try {

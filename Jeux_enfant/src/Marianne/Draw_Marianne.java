@@ -16,40 +16,19 @@ import javax.swing.JPanel;
  */
 public class Draw_Marianne extends JPanel{
     
-    JPanel panel, menu; // declaration objet
-    Bouton color, delete, choicePen ; 
-    boolean b = true ; 
+    MenuPanel option; // declaration d'objet
    
     public Draw_Marianne()
     {
-        
-        //this.setTitle("Dessin"); // titre de Jpanel
-        
-        panel = new JPanel() ; // def panel principal
-        menu = new JPanel(); 
-         color = new Bouton("Couleur") ; 
-         delete = new Bouton("Effacer") ; 
-         choicePen = new Bouton("Forme_du_crayon") ; 
-         panel.setLayout(new BorderLayout());
-         menu.setLayout(new BorderLayout());
-         menu.add(color, BorderLayout.NORTH) ; 
-         menu.add(delete, BorderLayout.SOUTH) ; 
-         menu.add(choicePen, BorderLayout.CENTER); 
-         panel.add(menu,BorderLayout.WEST ) ; 
-        
-         
-         
-         this.initDraw(); 
-         
-       
-        
+        this.setName("DESSIN"); // constructeur signé
+        option = new MenuPanel(); // je cree un objet MenuPanel
+        this.initDraw(); 
     }
     
    private void initDraw()
    {
-      
-         this.add(new DrawingPanel()); 
-     
+        this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
+        this.add(option,BorderLayout.WEST ) ; // j'ajoute  le MenuPanel
    }
     
     
@@ -59,3 +38,4 @@ public class Draw_Marianne extends JPanel{
     
 
 }
+
