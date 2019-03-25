@@ -19,16 +19,25 @@ public class MainMarianne {
      */
     public static void main(String[] args) {
         
+        // creation Jframe
         JFrame  dessinTest = new JFrame("Dessin"); 
-        dessinTest.add(new Draw_Marianne()) ; 
-         // Initialisation de la fenêtre
-        dessinTest.setContentPane(new Draw_Marianne()); // Ajout de mon contenu à la fenêtre
-        dessinTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fermeture
-       // this.setResizable(false); // Fenêtre non-redimensionnable
-        dessinTest.pack(); // Ajustement de la taille au contenu
+        // creation de lobket draw_marianne
+        Draw_Marianne contenu = new Draw_Marianne(); 
+        
+        dessinTest.add(contenu) ; 
+        
+        // Ajout de mon contenu à la fenêtre
+        dessinTest.setContentPane(contenu); 
+        // Fermeture
+        dessinTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        // Fenêtre non-redimensionnable
+     // this.setResizable(false); 
+        // Ajustement de la taille au contenu
+        dessinTest.pack(); 
         // On positionne la fenêtre au milieu de l'écran
         dessinTest.setLocationRelativeTo(null);
-        dessinTest.setVisible(true); // Affichage de la fenêtre
+        // Affichage de la fenêtre
+        dessinTest.setVisible(true); 
         
        
         
