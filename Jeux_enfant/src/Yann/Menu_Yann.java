@@ -11,4 +11,5 @@ package Yann;
  * @author Yann Golhen
  */
 public class Menu_Yann {
+    
 }
