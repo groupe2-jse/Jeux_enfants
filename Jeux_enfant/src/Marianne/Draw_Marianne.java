@@ -6,7 +6,6 @@
 
 package Marianne;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -26,28 +25,27 @@ public class Draw_Marianne extends JFrame{
     
     public Draw_Marianne()
     {
-        draw = new JPanel (); 
-        menu = new JMenu (); 
-        delete = new Button() ; 
-        color = new Button() ; 
-        choicePen = new Button() ; 
         
-        initDraw(); 
         
-        //this.pack(); // pour avoir une taille auto
-        this.setResizable(true);// la taille est gelee
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // le programme ferme a la fermeture de l'IG
-        this.setVisible(true);// Formulaire visible
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fermeture
+        this.setResizable(false); // Fenêtre non-redimensionnable
+        //this.pack(); // Ajustement de la taille au contenu
+        // On positionne la fenêtre au milieu de l'écran
+       // this.setLocationRelativeTo(null);
+        this.setVisible(true); // Affichage de la fenêtre
         
       
     }
     
-   private void initDraw()
-   {
-       draw.setLayout(new BorderLayout()) ;
-   }
-    
+//   private void initDraw()
+//   {
+//       this.add(draw); 
+//       this.add(menu); 
+//       this.add(color); 
+//       this.add(choicePen); 
+//       this.add(delete); 
+//   }
+//    
     
 
   
