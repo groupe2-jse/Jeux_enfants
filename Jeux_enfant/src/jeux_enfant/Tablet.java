@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -24,7 +25,7 @@ public class Tablet extends JFrame{
 
     JPanel contenu;
     int niveau;
-    JMenuBar menuP;
+    Menu_Yann menuP;
 
     public int getNiveau() {
         return niveau;
@@ -63,7 +64,10 @@ public class Tablet extends JFrame{
         //Ajout du menuBar
         menuP = new Menu_Yann();
         this.setJMenuBar(menuP);
-        menuP.getComponent(1);
+        //menuP.getDraw().addActionListener(new ActionListener(){
+            
+        //});
+        
         
         
         

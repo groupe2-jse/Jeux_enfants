@@ -18,7 +18,7 @@ import javax.swing.JMenuItem;
  */
 public class Menu_Yann extends JMenuBar{
     
-    JMenu menu, activite, niveau;
+    JMenu activite, niveau;
     JMenuItem draw, calcul, question, niveau1, niveau2, administration;
     
        public Menu_Yann(){  
@@ -51,10 +51,6 @@ public class Menu_Yann extends JMenuBar{
         
                 
         }
-
-    public JMenu getMenu() {
-        return menu;
-    }
 
     public JMenu getActivite() {
         return activite;
