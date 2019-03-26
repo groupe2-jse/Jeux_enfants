@@ -6,7 +6,6 @@
 
 package Lorenzo;
 
-import java.util.Random;
 import javax.swing.JPanel;
 
 /**
@@ -14,44 +13,11 @@ import javax.swing.JPanel;
  * @author Lorenzo Nava-Nava
  */
 public final class Calcul_Lorenzo extends JPanel{
-    private int num1;
-    private int num2;
-    private int operationResult;
-    private char operand;
-    private String calcul;
-    private Random rd = new Random();
-
-    
-    
     public Calcul_Lorenzo(int niveau){
         this.initCalcul(niveau);
     }
     
-    public String getCalcul() {
-        return calcul;
-    }
-
-    public void setCalcul(String calcul) {
-        this.calcul = calcul;
-    }
     
-    private int GenerateRandomNumbers(int niveau){
-        int num=0;
-        switch(niveau){
-            case 1:
-                num=rd.nextInt(8)+1;
-            break;
-            
-            case 2:
-                num=rd.nextInt(998)+1;
-            break;
-        }
-        return num;
-    }
-    private int GenerateAlternativeSecondRandomNumbers(){
-        int num=rd.nextInt(this.num1)+1;
-        return num;
-    }
     
     private char GenerateRandomOperand(int niveau){
         int choixOperand=0;
@@ -119,12 +85,14 @@ public final class Calcul_Lorenzo extends JPanel{
             break;  
         }        
         
+        this.setName("Calcul");
+        CreateOperation operation = new CreateOperation(niveau);
+        Display d1 = new Display(operation);
+        }        
+        //Display();
     }
-    @Override
-    public String toString(){
-        return(num1 + " " + operand + " " + num2 + " = ");
-    }
-}
+    
+
 
 
 
