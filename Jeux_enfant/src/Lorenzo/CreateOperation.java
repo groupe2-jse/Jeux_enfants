@@ -16,6 +16,7 @@ public final class CreateOperation {
     public int num1;
     public int num2;
     public int operationResult;
+    public String result;
     public char operand;
     public String calcul;
     public Random rd = new Random();
@@ -58,6 +59,14 @@ public final class CreateOperation {
         calcul=toString();
             
     }
+    }
+
+    public int getOperationResult() {
+        return operationResult;
+    }
+
+    public void setOperationResult(int operationResult) {
+        this.operationResult = operationResult;
     }
     public String getCalcul() {
         return calcul;
@@ -113,5 +122,8 @@ public final class CreateOperation {
     @Override
     public String toString(){
         return(num1 + " " + operand + " " + num2 + " = ");
+    }
+    public String toString2(int machin){
+        return ("" + machin);
     }
 }

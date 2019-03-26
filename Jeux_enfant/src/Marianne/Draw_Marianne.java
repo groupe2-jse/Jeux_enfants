@@ -34,11 +34,5 @@ public class Draw_Marianne extends JPanel{
         this.add(new Display_drawing(), BorderLayout.CENTER) ; 
    }
     
-    
-
-  
-    
-    
-
 }
 

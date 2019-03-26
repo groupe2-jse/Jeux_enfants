@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package Marianne;
+package zine;
 
 import java.awt.Font;
 import javax.swing.JButton;
 
 /**
  *
- * @author Yann Golhen
+ * @author stagldnr
  */
-public class Bouton extends JButton{
-
-    public Bouton(String name, Font font){
+public class Button extends JButton{
+    
+    public Button(String name, Font font){
+        
         super(name);
         this.setFont(font);
     }
-
-    public Bouton(String name){
+    
+     public Button(String name){
+        
         super(name);
     }
-    
 }

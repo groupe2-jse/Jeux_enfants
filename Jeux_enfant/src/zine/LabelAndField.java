@@ -3,31 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package Lorenzo;
+package zine;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
  *
- * @author Lorenzo Nava-Nava
+ * @author stagldnr
  */
-public class CalculAndTextField extends JPanel{
-    JLabel calcul;
+public class LabelAndField extends JPanel{
+    
+    JLabel reponse;
     JTextField textField;
-    Font font;
-    public CalculAndTextField(String calcul, int size, Font font){
-        this.font = font;
-        this.calcul= new JLabel(calcul);
-        this.calcul.setFont(font);
+    
+    
+    public LabelAndField(String reponse){
+       
+        this.reponse= new JLabel(reponse);
+        
         this.textField= new JTextField(size);
-        this.textField.setFont(font);
+        
         this.setLayout(new BorderLayout());
-        this.add(this.calcul, BorderLayout.WEST);
+        this.add(this.reponse, BorderLayout.WEST);
         this.add(this.textField, BorderLayout.EAST);
     }
+    
 }
