@@ -25,6 +25,7 @@ public class Testingstuff extends JFrame{
      private JPanel pan = new JPanel();
     private JButton bouton = new JButton("question suivante");
     String text;
+    private static int compteur = 0;
     
     public Testingstuff(){
         super("question");
@@ -44,6 +45,8 @@ public class Testingstuff extends JFrame{
     }
      
     private class HandlerClass implements ActionListener{
+        
+        
         @Override
         public void actionPerformed(ActionEvent e){
             str = e.getActionCommand(); //This is what I mean by storing.
@@ -81,27 +84,42 @@ public class Testingstuff extends JFrame{
     {
         String text = "";
         Question_Julien daop = new Question_Julien();
-        Question a = daop.find(1);
+        int id = ChoixQuestion();
+        Question a = daop.find(id);
         text = a.getQuestions();
         return text;
     }
     private static int ChoixQuestion()
     {
+        int tabId[]={};
+        
         int nbr;
         int choixNiveau = 1;
-        
+        int id;
         Random r = new Random();
         int nb = r.nextInt((9 - 0) + 1) + 0;
         Question_Julien daop = new Question_Julien();
         Question a = daop.find(nb);
+        id = a.getId_question();
         nbr = a.getNiveau_question();
         if(nbr != choixNiveau)
         {
             return ChoixQuestion();
         }
+        else
+        {
+            for(int i = 0; i != compteur; i++)
+            {
+                if(tabId[i] == id)
+                {
+                    return ChoixQuestion();
+                }
+            }
+        }
+        compteur = compteur + 1;
+        tabId[compteur]=id;
         
-        
-        return nbr;
+        return id;
     }
 
 public static void main(String[]args){      
