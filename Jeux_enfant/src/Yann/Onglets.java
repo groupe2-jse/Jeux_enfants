@@ -35,13 +35,12 @@ public class Onglets extends JTabbedPane{
         this.add(question);
         this.addChangeListener((ChangeEvent e) -> {
             chosen = this.getSelectedIndex();
-//            System.out.print(((Tablet)((JRootPane)((JLayeredPane)((JPanel)((JTabbedPane)e.getSource())
-//                        .getParent()).getParent()).getParent()).getParent()).getNiveau());
-//            System.out.print(chosen);
             switch (chosen){
-                case 0 : draw.initDraw();
-                case 1 : calcul.initCalcul(niveau);
-                //case 2 : question.initQuestion(niveau);
+                case 0 : draw.initDraw();break;
+                case 1 : calcul.initCalcul(((Tablet)((JRootPane)((JLayeredPane)((JPanel)((JTabbedPane)e.getSource())
+                        .getParent()).getParent()).getParent()).getParent()).getNiveau());
+                case 2 : question.initQuestion(((Tablet)((JRootPane)((JLayeredPane)((JPanel)((JTabbedPane)e.getSource())
+                        .getParent()).getParent()).getParent()).getParent()).getNiveau());
             }
         });
     }

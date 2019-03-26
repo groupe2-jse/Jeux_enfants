@@ -19,4 +19,8 @@ public class Question_zine extends JPanel{
         
     }
 
+    public void initQuestion(int niveau) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
