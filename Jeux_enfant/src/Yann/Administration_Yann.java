@@ -24,7 +24,8 @@ public final class Administration_Yann extends JPanel{
         this.removeAll();
         this.setName("Administration");
         this.setLayout(new BorderLayout());
-        
+//        LabelAndField askMDP = new LabelAndField("Veuillez entrer votre mot de passe");
+//        this.add(askMDP,BorderLayout.NORTH);
     }
     
 }

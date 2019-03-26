@@ -94,15 +94,15 @@ public class Tablet extends JFrame{
             }
         });
         
-//        menuP.getQuestion().addActionListener((ActionEvent e) -> {
-//            onglets.setSelectedIndex(2);
-//            onglets.getQuestion().initQuestion(niveau);
-//            if (onglets.getTabCount()>3)
-//            {
-//            onglets.remove(3);
-//            adminShown=false;
-//            }
-//        });
+        menuP.getQuestion().addActionListener((ActionEvent e) -> {
+            onglets.setSelectedIndex(2);
+            //onglets.getQuestion().initQuestion(niveau);
+            if (onglets.getTabCount()>3)
+            {
+            onglets.remove(3);
+            adminShown=false;
+            }
+        });
         
         menuP.getNiveau1().addActionListener((ActionEvent e) -> {
             setNiveau(1);
@@ -128,7 +128,7 @@ public class Tablet extends JFrame{
             if (!adminShown){
             Administration_Yann admin = new Administration_Yann();
             onglets.add(admin);
-            onglets.setSelectedIndex(3);
+            onglets.setSelectedIndex(onglets.getTabCount()-1);
             adminShown=true;
             }
         });
@@ -137,23 +137,23 @@ public class Tablet extends JFrame{
             chosen = onglets.getSelectedIndex();
             switch (chosen){
                 case 0 : onglets.getDraw().initDraw();
-                        if (onglets.getTabCount()>3)
+                        if (adminShown)
                         {
-                        this.remove(3);
+                        onglets.remove(onglets.getTabCount()-1);
                         adminShown=false;
                         }break;
                 case 1 : onglets.getCalcul().initCalcul(niveau);
-                        if (onglets.getTabCount()>3)
+                        if (adminShown)
                         {
-                        this.remove(3);
+                        onglets.remove(onglets.getTabCount()-1);
                         adminShown=false;
                         }break;
-//                case 2 : onglets.getQuestion().initQuestion(niveau);
-//                        if (onglets.getTabCount()>3)
-//                        {
-//                        this.remove(3);
-//                        adminShown=false;
-//                        }
+                case 2 : //onglets.getQuestion().initQuestion(niveau);
+                        if (adminShown)
+                        {
+                        onglets.remove(onglets.getTabCount()-1);
+                        adminShown=false;
+                        }
             }
         });
         
