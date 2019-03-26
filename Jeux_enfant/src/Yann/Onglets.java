@@ -22,7 +22,7 @@ import zine.Question_zine;
  */
 public class Onglets extends JTabbedPane{
 
-    int chosen;
+    
     Draw_Marianne draw ;
     Calcul_Lorenzo calcul;
     Question_zine question;
@@ -43,20 +43,11 @@ public class Onglets extends JTabbedPane{
         
         draw = new Draw_Marianne();
         calcul = new Calcul_Lorenzo(niveau);
-        question = new Question_zine();
+        //question = new Question_zine();
         this.add(draw);
         this.add(calcul);
-        this.add(question);
-        this.addChangeListener((ChangeEvent e) -> {
-            chosen = this.getSelectedIndex();
-            switch (chosen){
-                case 0 : draw.initDraw();break;
-                case 1 : calcul.initCalcul(((Tablet)((JRootPane)((JLayeredPane)((JPanel)((JTabbedPane)e.getSource())
-                        .getParent()).getParent()).getParent()).getParent()).getNiveau());break;
-                //case 2 : question.initQuestion(((Tablet)((JRootPane)((JLayeredPane)((JPanel)((JTabbedPane)e.getSource())
-                        //.getParent()).getParent()).getParent()).getParent()).getNiveau());
-            }
-        });
+        //this.add(question);
+        
     }
     
     

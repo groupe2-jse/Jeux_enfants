@@ -6,12 +6,18 @@
 
 package jeux_enfant;
 
+import Yann.Administration_Yann;
 import Yann.Menu_Yann;
 import Yann.Onglets;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
 
 
 /**
@@ -21,8 +27,9 @@ import javax.swing.JPanel;
 public class Tablet extends JFrame{
 
     JPanel contenu;
-    int niveau;
+    int niveau, chosen;
     Menu_Yann menuP;
+    boolean adminShown;
 
     public int getNiveau() {
         return niveau;
@@ -35,8 +42,10 @@ public class Tablet extends JFrame{
     
     public Tablet(String nom) {
         
+        
         contenu = new JPanel();
         niveau=1;
+        adminShown=false;
         //initialisation de la fenetre principale
         this.setTitle(nom);
         this.setSize(500,500);
@@ -47,6 +56,10 @@ public class Tablet extends JFrame{
         this.pack();
         this.setResizable(false);
         this.setVisible(true);
+    }
+
+    public void setAdminShown(boolean adminShown) {
+        this.adminShown = adminShown;
     }
 
     private void initGUI() {
@@ -64,17 +77,32 @@ public class Tablet extends JFrame{
         menuP.getDraw().addActionListener((ActionEvent e) -> {
             onglets.setSelectedIndex(0);
             onglets.getDraw().initDraw();
+            if (onglets.getTabCount()>3)
+            {
+            onglets.remove(3);
+            adminShown=false;
+            }
         });
         
         menuP.getCalcul().addActionListener((ActionEvent e) -> {
             onglets.setSelectedIndex(1);
             onglets.getCalcul().initCalcul(niveau);
+            if (onglets.getTabCount()>3)
+            {
+            onglets.remove(3);
+            adminShown=false;
+            }
         });
         
-        menuP.getQuestion().addActionListener((ActionEvent e) -> {
-            onglets.setSelectedIndex(2);
-            onglets.getQuestion().initQuestion(niveau);
-        });
+//        menuP.getQuestion().addActionListener((ActionEvent e) -> {
+//            onglets.setSelectedIndex(2);
+//            onglets.getQuestion().initQuestion(niveau);
+//            if (onglets.getTabCount()>3)
+//            {
+//            onglets.remove(3);
+//            adminShown=false;
+//            }
+//        });
         
         menuP.getNiveau1().addActionListener((ActionEvent e) -> {
             setNiveau(1);
@@ -82,17 +110,50 @@ public class Tablet extends JFrame{
             switch (chosen){
                 case 0 : onglets.getDraw().initDraw();break;
                 case 1 : onglets.getCalcul().initCalcul(niveau);break;
-                case 2 : onglets.getQuestion().initQuestion(niveau);
+                //case 2 : onglets.getQuestion().initQuestion(niveau);
             }
         });
         
-        menuP.getNiveau2().addActionListener((ActionEvent e) -> {
-            setNiveau(2);
-            int chosen = onglets.getSelectedIndex();
+//        menuP.getNiveau2().addActionListener((ActionEvent e) -> {
+//            setNiveau(2);
+//            int chosen = onglets.getSelectedIndex();
+//            switch (chosen){
+//                case 0 : onglets.getDraw().initDraw();break;
+//                case 1 : onglets.getCalcul().initCalcul(niveau);break;
+//                //case 2 : onglets.getQuestion().initQuestion(niveau);
+//            }
+//        });
+        
+        menuP.getAdministration().addActionListener((ActionEvent e) -> {
+            if (!adminShown){
+            Administration_Yann admin = new Administration_Yann();
+            onglets.add(admin);
+            onglets.setSelectedIndex(3);
+            adminShown=true;
+            }
+        });
+        
+        onglets.addChangeListener((ChangeEvent e) -> {
+            chosen = onglets.getSelectedIndex();
             switch (chosen){
-                case 0 : onglets.getDraw().initDraw();break;
-                case 1 : onglets.getCalcul().initCalcul(niveau);break;
-                case 2 : onglets.getQuestion().initQuestion(niveau);
+                case 0 : onglets.getDraw().initDraw();
+                        if (onglets.getTabCount()>3)
+                        {
+                        this.remove(3);
+                        adminShown=false;
+                        }break;
+                case 1 : onglets.getCalcul().initCalcul(niveau);
+                        if (onglets.getTabCount()>3)
+                        {
+                        this.remove(3);
+                        adminShown=false;
+                        }break;
+//                case 2 : onglets.getQuestion().initQuestion(niveau);
+//                        if (onglets.getTabCount()>3)
+//                        {
+//                        this.remove(3);
+//                        adminShown=false;
+//                        }
             }
         });
         
