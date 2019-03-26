@@ -23,12 +23,27 @@ import zine.Question_zine;
 public class Onglets extends JTabbedPane{
 
     int chosen;
+    Draw_Marianne draw ;
+    Calcul_Lorenzo calcul;
+    Question_zine question;
+
+    public Draw_Marianne getDraw() {
+        return draw;
+    }
+
+    public Calcul_Lorenzo getCalcul() {
+        return calcul;
+    }
+
+    public Question_zine getQuestion() {
+        return question;
+    }
     
     public Onglets(int niveau) {
         
-        Draw_Marianne draw = new Draw_Marianne();
-        Calcul_Lorenzo calcul = new Calcul_Lorenzo(niveau);
-        Question_zine question = new Question_zine();
+        draw = new Draw_Marianne();
+        calcul = new Calcul_Lorenzo(niveau);
+        question = new Question_zine();
         this.add(draw);
         this.add(calcul);
         this.add(question);

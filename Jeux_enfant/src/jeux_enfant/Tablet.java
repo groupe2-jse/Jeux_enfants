@@ -10,12 +10,9 @@ import Yann.Menu_Yann;
 import Yann.Onglets;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+
 
 /**
  *
@@ -65,16 +62,39 @@ public class Tablet extends JFrame{
         menuP = new Menu_Yann();
         this.setJMenuBar(menuP);
         menuP.getDraw().addActionListener((ActionEvent e) -> {
-            
+            onglets.setSelectedIndex(0);
+            onglets.getDraw().initDraw();
         });
         
+        menuP.getCalcul().addActionListener((ActionEvent e) -> {
+            onglets.setSelectedIndex(1);
+            onglets.getCalcul().initCalcul(niveau);
+        });
         
+        menuP.getQuestion().addActionListener((ActionEvent e) -> {
+            onglets.setSelectedIndex(2);
+            onglets.getQuestion().initQuestion(niveau);
+        });
         
+        menuP.getNiveau1().addActionListener((ActionEvent e) -> {
+            setNiveau(1);
+            int chosen = onglets.getSelectedIndex();
+            switch (chosen){
+                case 0 : onglets.getDraw().initDraw();break;
+                case 1 : onglets.getCalcul().initCalcul(niveau);break;
+                case 2 : onglets.getQuestion().initQuestion(niveau);
+            }
+        });
         
-        
-        
-        
-        
+        menuP.getNiveau2().addActionListener((ActionEvent e) -> {
+            setNiveau(2);
+            int chosen = onglets.getSelectedIndex();
+            switch (chosen){
+                case 0 : onglets.getDraw().initDraw();break;
+                case 1 : onglets.getCalcul().initCalcul(niveau);break;
+                case 2 : onglets.getQuestion().initQuestion(niveau);
+            }
+        });
         
     }
 
