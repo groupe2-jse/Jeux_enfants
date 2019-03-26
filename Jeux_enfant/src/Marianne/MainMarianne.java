@@ -29,7 +29,7 @@ public class MainMarianne {
         
         
         // Ajout de mon contenu à la fenêtre
-        dessinTest.setContentPane(contenu); 
+        dessinTest.add(contenu); 
         
         // Fermeture
         dessinTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
