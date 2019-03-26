@@ -64,9 +64,9 @@ public class Tablet extends JFrame{
         //Ajout du menuBar
         menuP = new Menu_Yann();
         this.setJMenuBar(menuP);
-        //menuP.getDraw().addActionListener(new ActionListener(){
+        menuP.getDraw().addActionListener((ActionEvent e) -> {
             
-        //});
+        });
         
         
         
