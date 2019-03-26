@@ -18,12 +18,10 @@ import javax.swing.JPanel;
  *
  * @author Lorenzo Nava-Nava
  */
-public class Display {
+public class Display extends JPanel{
     public Display(CreateOperation operation){    
-        JFrame jf = new JFrame("Calcul");
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel contents= new JPanel();
-        contents.setLayout(new BoxLayout(contents,BoxLayout.Y_AXIS));
+        
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         JPanel calculZone = new CalculAndTextField(operation.getCalcul(), 3);
         JPanel bottomButtons = new JPanel();
         bottomButtons.setLayout(new GridLayout(0, 2, 100, 10));
@@ -45,10 +43,8 @@ public class Display {
         bottomButtons.add(b2);
         bottomButtons.add(lb3);
         bottomButtons.add(b3);
-        contents.add(calculZone);
-        contents.add(bottomButtons);
-        jf.add(contents);
-        jf.pack();
-        jf.setVisible(true);
+        this.add(calculZone);
+        this.add(bottomButtons);
+
     }
 }

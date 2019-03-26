@@ -20,7 +20,11 @@ public final class Calcul_Lorenzo extends JPanel{
     
     public void initCalcul(int niveau)
     {
+        this.setName("Calcul");
+        CreateOperation operation = new CreateOperation(niveau);
+        Display d1 = new Display(operation);
+        this.add(d1);
     }
-
+}
 
 
