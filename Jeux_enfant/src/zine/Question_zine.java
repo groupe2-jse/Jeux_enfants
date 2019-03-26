@@ -54,10 +54,10 @@ public class Question_zine extends JPanel{
         int choixNiveau = 1;
         int idRef;
         Random r = new Random();
-        int nb = r.nextInt((9 - 0) + 1) + 0;
+        int nb = r.nextInt((9 - 0) + 1);
         Question_Julien daop = new Question_Julien();
         Question a = daop.find(nb);
-        idRef = a.getId();
+        idRef = a.getId_question();
         nbr = a.getNiveau_question();
         if(nbr != choixNiveau)
         {

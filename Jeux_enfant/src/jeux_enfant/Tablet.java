@@ -114,15 +114,15 @@ public class Tablet extends JFrame{
             }
         });
         
-//        menuP.getNiveau2().addActionListener((ActionEvent e) -> {
-//            setNiveau(2);
-//            int chosen = onglets.getSelectedIndex();
-//            switch (chosen){
-//                case 0 : onglets.getDraw().initDraw();break;
-//                case 1 : onglets.getCalcul().initCalcul(niveau);break;
-//                //case 2 : onglets.getQuestion().initQuestion(niveau);
-//            }
-//        });
+        menuP.getNiveau2().addActionListener((ActionEvent e) -> {
+            setNiveau(2);
+            int chosen = onglets.getSelectedIndex();
+            switch (chosen){
+                case 0 : onglets.getDraw().initDraw();break;
+                case 1 : onglets.getCalcul().initCalcul(niveau);break;
+                //case 2 : onglets.getQuestion().initQuestion(niveau);
+            }
+        });
         
         menuP.getAdministration().addActionListener((ActionEvent e) -> {
             if (!adminShown){

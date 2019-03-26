@@ -111,7 +111,7 @@ public class Question_Julien implements DAO_Julien<Question>{
             pstmt.setString(2,obj.getReponse());
             pstmt.setInt(3,obj.getNiveau_question());
             pstmt.executeUpdate();
-            retObj = find(obj.getId());
+            retObj = find(obj.getId_question());
         } catch (SQLException ex) {
             Logger.getLogger(Question_Julien.class.getName()).log(Level.SEVERE, null, ex);
         }

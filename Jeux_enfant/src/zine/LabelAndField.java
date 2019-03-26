@@ -24,7 +24,7 @@ public class LabelAndField extends JPanel{
        
         this.reponse= new JLabel(reponse);
         
-        this.textField= new JTextField(size);
+        this.textField= new JTextField();
         
         this.setLayout(new BorderLayout());
         this.add(this.reponse, BorderLayout.WEST);
