@@ -99,9 +99,9 @@ public class Question_Julien implements DAO_Julien<Question>{
         Question retObj = null;
         String sql = " UPDATE "
                 +table
-                +" SET questions=?,"
-                +" reponse=?,"
-                +" niveau_question=?,"
+                +" SET questions = ?, "
+                +" reponse = ?, "
+                +" niveau_question = ?, "
                 +" WHERE id = ?";
   
 
@@ -111,9 +111,9 @@ public class Question_Julien implements DAO_Julien<Question>{
             pstmt.setString(2,obj.getReponse());
             pstmt.setInt(3,obj.getNiveau_question());
             pstmt.executeUpdate();
-            retObj = find(obj.getId_question());
+            retObj = find(obj.getId());
         } catch (SQLException ex) {
-            Logger.getLogger(DAO_Julien.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Question_Julien.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         return retObj;
