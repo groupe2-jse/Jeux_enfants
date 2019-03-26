@@ -7,7 +7,7 @@
 package Marianne;
 
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import java.awt.Dimension;
 import javax.swing.JPanel;
 
 /**
@@ -17,11 +17,13 @@ import javax.swing.JPanel;
 public class Draw_Marianne extends JPanel{
     
     MenuPanel option; // declaration d'objet
-   
+    
+    
     public Draw_Marianne()
     {
-        this.setName("DESSIN"); // constructeur signé
+        this.setName("Dessin"); // constructeur signé
         option = new MenuPanel(); // je cree un objet MenuPanel
+       
         this.initDraw(); 
     }
     
@@ -29,6 +31,7 @@ public class Draw_Marianne extends JPanel{
    {
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
         this.add(option,BorderLayout.WEST ) ; // j'ajoute  le MenuPanel
+        this.add(new Display_drawing(), BorderLayout.CENTER) ; 
    }
     
     
