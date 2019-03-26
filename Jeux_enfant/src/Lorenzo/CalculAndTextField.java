@@ -20,8 +20,8 @@ public class CalculAndTextField extends JPanel{
     JLabel calcul;
     JTextField textField;
     Font font;
-    public CalculAndTextField(String calcul, int size){
-        this.font = new Font("ComicSansMS", Font.BOLD, 50);
+    public CalculAndTextField(String calcul, int size, Font font){
+        this.font = font;
         this.calcul= new JLabel(calcul);
         this.calcul.setFont(font);
         this.textField= new JTextField(size);

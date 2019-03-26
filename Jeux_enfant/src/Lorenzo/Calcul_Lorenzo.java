@@ -6,6 +6,9 @@
 
 package Lorenzo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -22,7 +25,16 @@ public final class Calcul_Lorenzo extends JPanel{
     {
         this.removeAll();
         this.setName("Calcul");
-        this.add(new Display(new CreateOperation(niveau)));
+        CreateOperation operation = new CreateOperation(niveau);
+        Display d = new Display(operation);
+        d.getB1().addActionListener((ActionEvent e) -> {
+            initCalcul(niveau);
+        });
+        d.getB2().addActionListener((ActionEvent e) -> {
+            //System.out.println(operation.toString2(operation.getOperationResult()));
+            d.getLb2().setText("La Solution est: " + operation.toString2(operation.getOperationResult()));
+        });
+        this.add(d);        
     }
 }
 
