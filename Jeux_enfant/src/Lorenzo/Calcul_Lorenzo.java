@@ -79,7 +79,7 @@ public final class Calcul_Lorenzo extends JPanel{
         return 0;
     }
     
-    private void initCalcul(int niveau){
+    public void initCalcul(int niveau){
         this.setName("Calcul");
         switch(niveau){
             case 1:

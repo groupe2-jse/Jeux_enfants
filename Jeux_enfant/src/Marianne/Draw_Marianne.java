@@ -25,7 +25,7 @@ public class Draw_Marianne extends JPanel{
         this.initDraw(); 
     }
     
-   private void initDraw()
+   public void initDraw()
    {
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
         this.add(option,BorderLayout.WEST ) ; // j'ajoute  le MenuPanel

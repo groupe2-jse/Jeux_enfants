@@ -58,7 +58,7 @@ public class Tablet extends JFrame{
         
         //Ajout des onglets       
         
-        contenu.add(new Onglets(),BorderLayout.CENTER);
+        contenu.add(new Onglets(niveau),BorderLayout.CENTER);
         
     }
 
