@@ -22,6 +22,11 @@ import javax.swing.JTabbedPane;
 public class Tablet extends JFrame{
 
     JPanel contenu;
+    int niveau=1;
+
+    public int getNiveau() {
+        return niveau;
+    }
     
     
     public Tablet(String nom) {
@@ -51,11 +56,9 @@ public class Tablet extends JFrame{
         
         
         
-        //Ajout des onglets
-        JTabbedPane onglets = new Onglets();
+        //Ajout des onglets       
         
-        
-        contenu.add(onglets,BorderLayout.CENTER);
+        contenu.add(new Onglets(),BorderLayout.CENTER);
         
     }
 
