@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 
-package Lorenzo;
+package Yann;
 
 /**
  *
- * @author Lorenzo Nava-Nava
+ * @author Yann Golhen
  */
-public class MainLorenzo {
-    
-    public static void main(String[] args) {
-        Calcul_Lorenzo c = new Calcul_Lorenzo(2);
-    }
+public class changeListener {
+
 }

@@ -25,18 +25,21 @@ public class Question_Julien implements DAO_Julien<Question>{
     
     
     @Override
-    public Question find(Integer id_question) {
+    public Question find(Integer id) {
 
         Question retObj = null;
-        String sql = "SELECT * FROM "
-               + table
-               + " WHERE id_question=?";
+        
         try{
-           PreparedStatement pstmt = connection.prepareStatement(sql);
-           pstmt.setInt(1, id_question);
+            String sql = "SELECT * FROM "
+               + table
+               + " WHERE id = ?";
+            System.out.println("pomme de tere");
+           PreparedStatement pstmt;
+            pstmt = connection.prepareStatement(sql);
+           pstmt.setInt(1, id);
            ResultSet rs = pstmt.executeQuery();
            if(rs.first()){
-            retObj =  new Question(id_question,
+            retObj =  new Question(id,
                         rs.getString("questions"),
                         rs.getString("reponse"),
                         rs.getInt("niveau_question"));
@@ -80,7 +83,7 @@ public class Question_Julien implements DAO_Julien<Question>{
     public void deleted(Question obj) {
 
         try {
-            String sql = "DELETE FROM "+ table+ " WHERE id_question_question=?";
+            String sql = "DELETE FROM "+ table+ " WHERE id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1, obj.getId_question());
             int nombreLigneImpactees = pstmt.executeUpdate();
@@ -99,7 +102,7 @@ public class Question_Julien implements DAO_Julien<Question>{
                 +" SET questions=?,"
                 +" reponse=?,"
                 +" niveau_question=?,"
-                +" WHERE id_question_question=?";
+                +" WHERE id = ?";
   
 
         try {
@@ -127,9 +130,9 @@ public class Question_Julien implements DAO_Julien<Question>{
            ResultSet rs = pstmt.executeQuery();
            while(rs.next()){
             retObj.add (new Question(
-                    rs.getInt("id_question"),
+                    rs.getInt("id"),
                     rs.getString("questions"),
-                    rs.getString("preponse"),
+                    rs.getString("reponse"),
                     rs.getInt("niveau_question")
            ));
            }
