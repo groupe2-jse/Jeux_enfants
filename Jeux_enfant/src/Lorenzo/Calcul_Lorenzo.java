@@ -13,9 +13,10 @@ import javax.swing.JPanel;
  *
  * @author Lorenzo Nava-Nava
  */
-public class Calcul_Lorenzo extends JPanel{
+public final class Calcul_Lorenzo extends JPanel{
     private int num1;
     private int num2;
+    private int operationResult;
     private char operand;
     private String calcul;
     private Random rd = new Random();
@@ -23,26 +24,7 @@ public class Calcul_Lorenzo extends JPanel{
     
     
     public Calcul_Lorenzo(int niveau){
-        this.setName("Calcul");
-        
-        switch(niveau){
-            case 1:
-                num1=GenerateRandomNumbers(1);
-                operand=GenerateRandomOperand(1);
-                if(operand=='-'){
-                    num2=GenerateAlternativeSecondRandomNumbers(1);
-                }
-                else{
-                    num2=GenerateRandomNumbers(1);
-                }
-                calcul=toString();
-            break;
-            
-            case 2:
-                
-            break; 
-        }        
-        
+        this.initCalcul(niveau);
     }
     
     public String getCalcul() {
@@ -54,28 +36,90 @@ public class Calcul_Lorenzo extends JPanel{
     }
     
     private int GenerateRandomNumbers(int niveau){
-        int num=rd.nextInt(8)+1;
+        int num=0;
+        switch(niveau){
+            case 1:
+                num=rd.nextInt(8)+1;
+            break;
+            
+            case 2:
+                num=rd.nextInt(998)+1;
+            break;
+        }
         return num;
     }
-    private int GenerateAlternativeSecondRandomNumbers(int niveau){
+    private int GenerateAlternativeSecondRandomNumbers(){
         int num=rd.nextInt(this.num1)+1;
         return num;
     }
     
     private char GenerateRandomOperand(int niveau){
-        int choixOperand = rd.nextInt(2);
-        if(choixOperand==1){
-            return '-';
+        int choixOperand=0;
+        switch(niveau){ 
+            case 1:
+                choixOperand = rd.nextInt(2);
+                if(choixOperand==1){
+                    return '-';
+                }
+                else{
+                    return '+';
+                } 
+            case 2:
+                choixOperand = rd.nextInt(3);
+                if(choixOperand==1){
+                    return '-';
+                }
+                else if(choixOperand==2){
+                    return '+';
+                }
+                else{
+                    return 'x';
+                }      
         }
-        else{
-            return '+';
-        }
+        return 0;
     }
     
-    public String CreateCalcul(int num1,int num2, char operand){
-        return calcul;
+    private void initCalcul(int niveau){
+        this.setName("Calcul");
+        switch(niveau){
+            case 1:
+                num1=GenerateRandomNumbers(1);
+                operand=GenerateRandomOperand(1);
+                if(operand=='-'){
+                    num2=GenerateAlternativeSecondRandomNumbers();
+                    operationResult=num1-num2;
+                }
+                else{
+                    num2=GenerateRandomNumbers(1);
+                    operationResult=num1+num2;
+                }
+                calcul=toString();
+            break;
+            
+            case 2:
+                operand=GenerateRandomOperand(2);
+        switch (operand) {
+            case '-':
+                num1=GenerateRandomNumbers(2);
+                num2=GenerateRandomNumbers(2);
+                operationResult=num1-num2;
+                break;
+            case 'x':
+                num1=GenerateRandomNumbers(1);
+                num2=GenerateRandomNumbers(1);
+                operationResult=num1*num2;
+                break;
+            default:
+                num1=GenerateRandomNumbers(2);
+                num2=GenerateRandomNumbers(2);
+                operationResult=num1+num2;
+                break;
+        }
+                calcul=toString();
+            break;  
+        }        
+        
     }
-    
     @Override
     public String toString(){
         return(num1 + " " + operand + " " + num2 + " = ");
