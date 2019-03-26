@@ -6,8 +6,12 @@
 
 package Yann;
 
+import Marianne.Bouton;
 import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import zine.LabelAndField;
 
 /**
  *
@@ -23,9 +27,13 @@ public final class Administration_Yann extends JPanel{
         
         this.removeAll();
         this.setName("Administration");
+        JPanel orga =new JPanel();
+        orga.setLayout(new BoxLayout(orga,BoxLayout.Y_AXIS));
         this.setLayout(new BorderLayout());
-//        LabelAndField askMDP = new LabelAndField("Veuillez entrer votre mot de passe");
-//        this.add(askMDP,BorderLayout.NORTH);
+        LabelAndField askMDP = new LabelAndField("Veuillez entrer votre mot de passe");
+        orga.add(askMDP);
+        orga.add(new Bouton("Valider"));
+        this.add(orga,BorderLayout.CENTER);
     }
     
 }

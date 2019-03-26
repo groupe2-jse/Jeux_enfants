@@ -6,6 +6,7 @@
 package zine;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -20,15 +21,16 @@ public class LabelAndField extends JPanel{
     JTextField textField;
     
     
-    public LabelAndField(String reponse){
+    public LabelAndField(String pReponse){
        
-        this.reponse= new JLabel(reponse);
+        reponse= new JLabel(pReponse);
         
-        this.textField= new JTextField();
+        textField= new JTextField(20);
+        textField.setPreferredSize(new Dimension(20,12));
         
         this.setLayout(new BorderLayout());
-        this.add(this.reponse, BorderLayout.WEST);
-        this.add(this.textField, BorderLayout.EAST);
+        this.add(reponse, BorderLayout.WEST);
+        this.add(textField, BorderLayout.EAST);
     }
     
 }
