@@ -16,13 +16,11 @@ import javax.swing.JButton;
 public class Bouton extends JButton{
 
     public Bouton(String name, Font font){
-        
         super(name);
         this.setFont(font);
     }
 
     public Bouton(String name){
-        
         super(name);
     }
     
