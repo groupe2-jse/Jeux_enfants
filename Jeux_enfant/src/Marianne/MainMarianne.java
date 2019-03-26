@@ -6,6 +6,7 @@
 
 package Marianne;
 
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
@@ -21,10 +22,14 @@ public class MainMarianne {
         
         // creation Jframe
         JFrame  dessinTest = new JFrame("Dessin"); 
-        // creation de lobket draw_marianne
+        dessinTest.setLayout(new BorderLayout());
+        
+        // creation de l'objet draw_marianne 
+        // contient le menu et l'espace dessin
         Draw_Marianne contenu = new Draw_Marianne(); 
         
         dessinTest.add(contenu) ; 
+        
         
         // Ajout de mon contenu à la fenêtre
         dessinTest.setContentPane(contenu); 

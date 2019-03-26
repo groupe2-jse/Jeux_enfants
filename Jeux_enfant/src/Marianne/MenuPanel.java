@@ -22,7 +22,8 @@ public class MenuPanel extends JPanel {
         // definition
         color = new Bouton("Couleur") ; 
         delete = new Bouton("Effacer") ; 
-        choicePen = new Bouton("Forme_du_crayon") ; 
+        choicePen = new Bouton("Forme du crayon") ; 
+       
         
         this.initMenu() ;   
     }
