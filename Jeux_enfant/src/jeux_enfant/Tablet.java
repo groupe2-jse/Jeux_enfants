@@ -10,10 +10,9 @@ import Yann.Menu_Yann;
 import Yann.Onglets;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+
 
 /**
  *
@@ -22,16 +21,22 @@ import javax.swing.JTabbedPane;
 public class Tablet extends JFrame{
 
     JPanel contenu;
-    int niveau=1;
+    int niveau;
+    Menu_Yann menuP;
 
     public int getNiveau() {
         return niveau;
+    }
+
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
     }
     
     
     public Tablet(String nom) {
         
         contenu = new JPanel();
+        niveau=1;
         //initialisation de la fenetre principale
         this.setTitle(nom);
         this.setSize(500,500);
@@ -49,16 +54,47 @@ public class Tablet extends JFrame{
         //Creation Layout
         contenu.setLayout(new BorderLayout(5, 5));
         
-        //Ajout du menuBar
-        this.setJMenuBar(new Menu_Yann());
-        
-        //Init des onglets
-        
-        
-        
         //Ajout des onglets       
+        Onglets onglets = new Onglets(niveau);
+        contenu.add(onglets,BorderLayout.CENTER);
         
-        contenu.add(new Onglets(niveau),BorderLayout.CENTER);
+        //Ajout du menuBar
+        menuP = new Menu_Yann();
+        this.setJMenuBar(menuP);
+        menuP.getDraw().addActionListener((ActionEvent e) -> {
+            onglets.setSelectedIndex(0);
+            onglets.getDraw().initDraw();
+        });
+        
+        menuP.getCalcul().addActionListener((ActionEvent e) -> {
+            onglets.setSelectedIndex(1);
+            onglets.getCalcul().initCalcul(niveau);
+        });
+        
+        menuP.getQuestion().addActionListener((ActionEvent e) -> {
+            onglets.setSelectedIndex(2);
+            onglets.getQuestion().initQuestion(niveau);
+        });
+        
+        menuP.getNiveau1().addActionListener((ActionEvent e) -> {
+            setNiveau(1);
+            int chosen = onglets.getSelectedIndex();
+            switch (chosen){
+                case 0 : onglets.getDraw().initDraw();break;
+                case 1 : onglets.getCalcul().initCalcul(niveau);break;
+                case 2 : onglets.getQuestion().initQuestion(niveau);
+            }
+        });
+        
+        menuP.getNiveau2().addActionListener((ActionEvent e) -> {
+            setNiveau(2);
+            int chosen = onglets.getSelectedIndex();
+            switch (chosen){
+                case 0 : onglets.getDraw().initDraw();break;
+                case 1 : onglets.getCalcul().initCalcul(niveau);break;
+                case 2 : onglets.getQuestion().initQuestion(niveau);
+            }
+        });
         
     }
 
