@@ -6,14 +6,11 @@
 
 package Yann;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JLayeredPane;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JRootPane;
-import jeux_enfant.Tablet;
+
 
 /**
  *
@@ -33,11 +30,9 @@ public class Menu_Yann extends JMenuBar{
         
         //Second niveau Activités
         draw = new JMenuItem("Dessin");
-        draw.addActionListener((ActionEvent e) -> {
-        });
         calcul = new JMenuItem("Calcul");
         question = new JMenuItem("Questions");
-        
+
         //Second niveau Niveau
         niveau1 = new JMenuItem("Niveau 1");
         niveau2 = new JMenuItem("Niveau 2");
@@ -56,4 +51,40 @@ public class Menu_Yann extends JMenuBar{
         
                 
         }
+
+    public JMenu getMenu() {
+        return menu;
+    }
+
+    public JMenu getActivite() {
+        return activite;
+    }
+
+    public JMenu getNiveau() {
+        return niveau;
+    }
+
+    public JMenuItem getQuestion() {
+        return question;
+    }
+
+    public JMenuItem getDraw() {
+        return draw;
+    }
+
+    public JMenuItem getCalcul() {
+        return calcul;
+    }
+
+    public JMenuItem getNiveau1() {
+        return niveau1;
+    }
+
+    public JMenuItem getNiveau2() {
+        return niveau2;
+    }
+
+    public JMenuItem getAdministration() {
+        return administration;
+    }
 }
