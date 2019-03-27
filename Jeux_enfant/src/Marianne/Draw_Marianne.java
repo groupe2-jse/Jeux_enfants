@@ -7,7 +7,9 @@
 package Marianne;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -16,24 +18,48 @@ import javax.swing.JPanel;
  */
 public class Draw_Marianne extends JPanel{
     
-    MenuPanel option; // declaration d'objet
+   // JPanel option ; // declaration d'objet
     Display_drawing leDessin ; 
+    Bouton color, delete, choicePen ; 
+    JPanel menu  ; 
+    //Draw_Marianne tableau = new Draw_Marianne(); 
     
     
+     
     public Draw_Marianne()
     {
         this.setName("Dessin"); // constructeur signé
-        option = new MenuPanel(); // je cree un objet MenuPanel
-        leDessin = new Display_drawing(); 
+       // JPanel option = new JPanel(); // je cree un objet MenuPanel
         this.initDraw(); 
     }
     
    public void initDraw()
    {
+        leDessin = new Display_drawing(); 
+        color = new Bouton("Couleur") ; 
+        delete = new Bouton("Effacer") ; 
+        delete.addActionListener(new listenerSuppr()); 
+        choicePen = new Bouton("Forme du crayon") ; 
+        menu = new JPanel(); 
+        menu.setLayout(new BorderLayout());
+        menu.add(color, BorderLayout.NORTH) ; 
+        menu.add(delete, BorderLayout.SOUTH) ; 
+        
+        
+        menu.add(choicePen, BorderLayout.CENTER); 
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
-        this.add(option,BorderLayout.WEST ) ; // j'ajoute  le MenuPanel
+        this.add(menu,BorderLayout.WEST ) ; // j'ajoute  le MenuPanel
         this.add(leDessin, BorderLayout.CENTER) ; 
    }
+   
+    public class listenerSuppr implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            System.out.println("ok");
+            initDraw();
+         
+    }
     
+}
 }
 
