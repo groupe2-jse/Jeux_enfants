@@ -15,6 +15,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import zine.LabelAndField;
 
 /**
@@ -24,6 +26,7 @@ import zine.LabelAndField;
 public final class Administration_Yann extends JPanel{
 
     boolean alreadyShown;
+    JLabel erreur;
     
     public Administration_Yann() {
         alreadyShown=false;
@@ -35,12 +38,15 @@ public final class Administration_Yann extends JPanel{
         this.removeAll();
         this.setName("Administration");
         JPanel orga =new JPanel();
+        JPanel global = new JPanel();
+        global.setLayout(new BorderLayout());
         orga.setLayout(new BoxLayout(orga,BoxLayout.Y_AXIS));
         this.setLayout(new BorderLayout());
         LabelAndField askMDP = new LabelAndField("Veuillez saisir votre mot de passe");
         TitledBorder borderAdmin = new TitledBorder("Bienvenue dans l'interface d'aministration");
         orga.setBorder(borderAdmin);
 
+        erreur = new JLabel("Mot de passe erroné, veuillez réessayer");
 
         orga.add(askMDP);
         
@@ -52,10 +58,48 @@ public final class Administration_Yann extends JPanel{
             }
             else if (alreadyShown==false)
             {
-                orga.add(new JLabel("Mot de passe erroné, veuillez réessayer"));
-                this.removeAll();
-                this.add(orga,BorderLayout.CENTER);
+                orga.add(erreur);
+                global.removeAll();
+                global.add(orga,BorderLayout.CENTER);
                 alreadyShown=true;
+            }
+        });
+        
+        askMDP.getTextField().getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (alreadyShown)
+                {
+                    
+                    orga.remove(erreur);
+                    global.removeAll();
+                    global.add(orga,BorderLayout.CENTER);
+                    alreadyShown=false;
+                    
+                }
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (alreadyShown)
+                {
+                    orga.remove(erreur);
+                    global.removeAll();
+                    global.add(orga,BorderLayout.CENTER);
+                    alreadyShown=false;
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (alreadyShown)
+                {
+                    orga.remove(erreur);
+                    global.removeAll();
+                    global.add(orga,BorderLayout.CENTER);
+                    alreadyShown=false;
+                }
             }
         });
         
@@ -69,15 +113,16 @@ public final class Administration_Yann extends JPanel{
             }
             else if (alreadyShown==false)
             {
-                orga.add(new JLabel("Mot de passe erroné, veuillez réessayer"));
-                this.removeAll();
-                this.add(orga,BorderLayout.CENTER);
+                orga.add(erreur);
+                global.removeAll();
+                global.add(orga,BorderLayout.CENTER);
                 alreadyShown=true;
             }
         });
         
         orga.add(checkMDP);
-        this.add(orga,BorderLayout.CENTER);
+        global.add(orga,BorderLayout.CENTER);
+        this.add(global,BorderLayout.CENTER);
     }
     
     public boolean verifierMDP(String essai)
