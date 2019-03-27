@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showConfirmDialog;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
@@ -50,7 +51,7 @@ public final class Administration_Yann extends JPanel{
     List<Question> listQuestions;
     List<String> listString = new ArrayList<>();
     ComboBox menuDeroulantQuestions;
-    int choix;
+    int choix, confirmation;
     
     public Administration_Yann() {
         alreadyShown=false;
@@ -159,6 +160,7 @@ public final class Administration_Yann extends JPanel{
         {
             essaiChiffre+=(char)(essai.charAt(i)+5);
         }
+        
         
         try (BufferedReader in = new BufferedReader(new FileReader("password.txt")))
         {
@@ -286,15 +288,22 @@ public final class Administration_Yann extends JPanel{
             mdpChiffre+=(char)(mdp.charAt(i)+5);
         }
         
-        try (BufferedWriter out = new BufferedWriter(new FileWriter("password.txt")))
+        confirmation = showConfirmDialog(null,
+                                        "Vous allez redéfinir le mot de passe, continuer?",
+                                        "Nouveau mot de passe",
+                                        2);
+        
+        if (confirmation==0)
         {
-          out.write(mdpChiffre);
-          
-          
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Tablet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Tablet.class.getName()).log(Level.SEVERE, null, ex);
+            try (BufferedWriter out = new BufferedWriter(new FileWriter("password.txt")))
+            {
+              out.write(mdpChiffre);
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Tablet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Tablet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -320,12 +329,12 @@ public final class Administration_Yann extends JPanel{
         
             qRLTF = new QuestionReponseLTF(questionChoisie.getQuestions(),questionChoisie.getReponse());
         
-            boutonsEtNiveau = new JPanel(new GridLayout(0,3,10,10));
+            boutonsEtNiveau = new JPanel(new GridLayout(0,4,10,10));
         
             TitledBorder borderAjouter = new TitledBorder("Modifiez une question :");
             orga.setBorder(borderAjouter);
         
-            Bouton valider = new Bouton("Valider");
+            Bouton valider = new Bouton("Modifier");
             valider.addActionListener((ActionEvent f) -> {
             if (qRLTF.getQuestion().getTextField().getText().length()==0)
             {
@@ -343,12 +352,26 @@ public final class Administration_Yann extends JPanel{
             }
             else
             {
-            questionToDB = createQuestion();        
+            questionToDB = createQuestion(questionChoisie.getId_question());        
             qJ.update(questionToDB);
             initModifierQuestion();
             }
         });
         
+        Bouton supprimer = new Bouton("Supprimer");
+        supprimer.addActionListener((ActionEvent g) -> {
+            confirmation = showConfirmDialog(null,
+                                        "Vous allez supprimer définitivement la question N°" + questionChoisie.getId_question() +", continuer ?",
+                                        "Nouveau mot de passe",
+                                        2);
+            if (confirmation==0)
+            {
+                questionToDB = createQuestion(questionChoisie.getId_question());        
+                qJ.update(questionToDB);
+                initModifierQuestion();
+            }
+        });    
+            
         Bouton retour = new Bouton("Retour");
         retour.addActionListener((ActionEvent g) -> {
             initAdmiValidated();
@@ -357,6 +380,7 @@ public final class Administration_Yann extends JPanel{
         radioNiveau = new RadioNiveau();
         boutonsEtNiveau.add(radioNiveau);
         boutonsEtNiveau.add(valider);
+        boutonsEtNiveau.add(supprimer);
         boutonsEtNiveau.add(retour);
         orga.add(menuDeroulantQuestions);
         orga.add(qRLTF);
@@ -375,7 +399,7 @@ public final class Administration_Yann extends JPanel{
         TitledBorder borderAjouter = new TitledBorder("Ajoutez une question :");
         orga.setBorder(borderAjouter);
         
-        Bouton valider = new Bouton("Valider");
+        Bouton valider = new Bouton("Enregistrer");
         valider.addActionListener((ActionEvent e) -> {
             if (qRLTF.getQuestion().getTextField().getText().length()==0)
             {
@@ -393,7 +417,7 @@ public final class Administration_Yann extends JPanel{
             }
             else
             {
-            questionToDB = createQuestion();
+            questionToDB = createQuestion(0);
             Question_Julien qJ = new Question_Julien();
             qJ.create(questionToDB);
             initAjouterQuestion();
@@ -413,7 +437,7 @@ public final class Administration_Yann extends JPanel{
         orga.add(boutonsEtNiveau);
     }
 
-    private Question createQuestion() {
+    private Question createQuestion(int idQuestion) {
         
         String question, reponse;
         int niveau;
@@ -431,13 +455,12 @@ public final class Administration_Yann extends JPanel{
         }
         
         objet = new Question(
-                                0,
+                                idQuestion,
                                 question,
                                 reponse,
                                 niveau);
         return objet;
         
     }
-
-    
+   
 }
