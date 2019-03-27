@@ -5,6 +5,7 @@
  */
 package Marianne;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -23,37 +24,40 @@ public class Display_drawing extends JPanel {
      *
      */
     int x = 0, y = 0;
-    JPanel affiche ; 
+   
+    JPanel affiche = new JPanel();
 
     public Display_drawing() {
 
-        affiche=new JPanel();
+        affiche.setBackground(Color.WHITE);
         
-        this.setBackground(Color.WHITE);
-        
-        
-        this.addMouseListener(new MouseAdapter() {
+       this.addMouseListener(new MouseAdapter() {
             //@Override
             public void mousePressed(MouseEvent e) {
                 x = e.getX();
                 y = e.getY();
             }
         });
-        
+
         this.addMouseMotionListener(new MouseMotionAdapter() {
             //@Override
-            public void mouseDragged(MouseEvent e ){
-                Graphics g = affiche.getGraphics() ; 
-                g.drawLine(x, y, e.getX(),e.getY() );
-                x = e.getX(); 
-                y = e.getY() ; 
-                
+            public void mouseDragged(MouseEvent e) {
+
+                Graphics g = affiche.getGraphics();
+                g.drawLine(x, y, e.getX(), e.getY());
+                x = e.getX();
+                y = e.getY();
+
             }
-});
-          
-           
-    }
-     
+        });
+        
+       this.setLayout(new BorderLayout());
+       this.add(affiche, BorderLayout.CENTER) ; 
     
+    }
+    
+   
+    
+            
 
 }
