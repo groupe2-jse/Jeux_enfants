@@ -17,13 +17,14 @@ import javax.swing.JPanel;
 public class Draw_Marianne extends JPanel{
     
     MenuPanel option; // declaration d'objet
+    Display_drawing leDessin ; 
     
     
     public Draw_Marianne()
     {
         this.setName("Dessin"); // constructeur signé
         option = new MenuPanel(); // je cree un objet MenuPanel
-       
+        leDessin = new Display_drawing(); 
         this.initDraw(); 
     }
     
@@ -31,7 +32,7 @@ public class Draw_Marianne extends JPanel{
    {
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
         this.add(option,BorderLayout.WEST ) ; // j'ajoute  le MenuPanel
-        this.add(new Display_drawing(), BorderLayout.CENTER) ; 
+        this.add(leDessin, BorderLayout.CENTER) ; 
    }
     
 }
