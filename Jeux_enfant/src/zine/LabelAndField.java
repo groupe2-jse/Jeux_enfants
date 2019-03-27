@@ -19,6 +19,10 @@ public class LabelAndField extends JPanel{
     
     JLabel reponse;
     JTextField textField;
+
+    public JTextField getTextField() {
+        return textField;
+    }
     
     
     public LabelAndField(String pReponse){
@@ -26,11 +30,13 @@ public class LabelAndField extends JPanel{
         reponse= new JLabel(pReponse);
         
         textField= new JTextField(20);
-        textField.setPreferredSize(new Dimension(20,12));
+        textField.setPreferredSize(new Dimension(2,2));
         
         this.setLayout(new BorderLayout());
         this.add(reponse, BorderLayout.WEST);
         this.add(textField, BorderLayout.EAST);
     }
+    
+    
     
 }
