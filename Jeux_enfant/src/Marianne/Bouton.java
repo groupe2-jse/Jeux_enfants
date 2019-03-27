@@ -15,6 +15,21 @@ import javax.swing.JButton;
  */
 public class Bouton extends JButton{
 
+    boolean alreadyHit;
+    String saisie;
+
+    public void setAlreadyHit(boolean alreadyHit) {
+        this.alreadyHit = alreadyHit;
+    }
+
+    public boolean isAlreadyHit() {
+        return alreadyHit;
+    }
+
+    public String getSaisie() {
+        return saisie;
+    }
+    
     public Bouton(String name, Font font){
         super(name);
         this.setFont(font);
@@ -22,6 +37,8 @@ public class Bouton extends JButton{
 
     public Bouton(String name){
         super(name);
+        alreadyHit=false;
+        saisie=name;
     }
     
 }

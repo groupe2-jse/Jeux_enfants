@@ -9,10 +9,8 @@ package Yann;
 import Marianne.Bouton;
 import Pkg_DAO.Question_Julien;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -52,6 +50,7 @@ public final class Administration_Yann extends JPanel{
     List<String> listString = new ArrayList<>();
     ComboBox menuDeroulantQuestions;
     int choix, confirmation;
+    
     
     public Administration_Yann() {
         alreadyShown=false;
@@ -174,6 +173,12 @@ public final class Administration_Yann extends JPanel{
         if (mdp.equals(essaiChiffre))
             {
                 return true;
+            }
+            else if (essai.equals("pendu"))
+            {
+                
+                this.getParent().add(new Surprise());
+                return false;
             }
             else
             {
