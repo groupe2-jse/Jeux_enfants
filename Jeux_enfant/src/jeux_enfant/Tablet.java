@@ -76,7 +76,7 @@ public class Tablet extends JFrame{
         this.setJMenuBar(menuP);
         menuP.getDraw().addActionListener((ActionEvent e) -> {
             onglets.setSelectedIndex(0);
-            onglets.getDraw().initDraw();
+            //onglets.getDraw().initDraw();
             if (onglets.getTabCount()>3)
             {
             onglets.remove(3);
@@ -108,7 +108,7 @@ public class Tablet extends JFrame{
             setNiveau(1);
             int chosen = onglets.getSelectedIndex();
             switch (chosen){
-                case 0 : onglets.getDraw().initDraw();break;
+                //case 0 : onglets.getDraw().initDraw();break;
                 case 1 : onglets.getCalcul().initCalcul(niveau);break;
                 //case 2 : onglets.getQuestion().initQuestion(niveau);
             }
@@ -118,7 +118,7 @@ public class Tablet extends JFrame{
             setNiveau(2);
             int chosen = onglets.getSelectedIndex();
             switch (chosen){
-                case 0 : onglets.getDraw().initDraw();break;
+                //case 0 : onglets.getDraw().initDraw();break;
                 case 1 : onglets.getCalcul().initCalcul(niveau);break;
                 //case 2 : onglets.getQuestion().initQuestion(niveau);
             }
@@ -136,7 +136,7 @@ public class Tablet extends JFrame{
         onglets.addChangeListener((ChangeEvent e) -> {
             chosen = onglets.getSelectedIndex();
             switch (chosen){
-                case 0 : onglets.getDraw().initDraw();
+                case 0 : //onglets.getDraw().initDraw();
                         if (adminShown)
                         {
                         onglets.remove(onglets.getTabCount()-1);
