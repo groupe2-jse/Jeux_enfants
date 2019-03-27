@@ -206,18 +206,21 @@ public final class Administration_Yann extends JPanel{
         LabelAndField changeMDP = new LabelAndField("Nouveau mot de passe (min 5 caractères)");
         TitledBorder borderNewMDP = new TitledBorder("Changez votre mot de passe :");
         changeMDP.setBorder(borderNewMDP);
-        changed = new JLabel("Mot de passe modifié avec succès");
         changeMDP.getTextField().addActionListener((ActionEvent e) -> {
             if (changeMDP.getTextField().getText().length()>=5)
             {
                 changeMDP(changeMDP.getTextField().getText());
                 if (alreadyShown2==false)
                 {
-                    orga.add(changed);
+                    if (confirmation ==0)
+                    {
+                        orga.add(changed);
+                        alreadyShown=true;
+                    }
                     global.removeAll();
                     global.add(orga,BorderLayout.CENTER);
                     changeMDP.getTextField().setText("");
-                    alreadyShown=true;
+                    
                 }
             }
         });
@@ -269,11 +272,15 @@ public final class Administration_Yann extends JPanel{
                 changeMDP(changeMDP.getTextField().getText());
                 if (alreadyShown2==false)
                 {
-                    orga.add(changed);
+                    if (confirmation ==0)
+                    {
+                        orga.add(changed);
+                        alreadyShown=true;
+                    }
                     global.removeAll();
                     global.add(orga,BorderLayout.CENTER);
                     changeMDP.getTextField().setText("");
-                    alreadyShown=true;
+                   
                 }
             }            
         });
@@ -295,6 +302,7 @@ public final class Administration_Yann extends JPanel{
         
         if (confirmation==0)
         {
+            changed = new JLabel("Mot de passe modifié avec succès");
             try (BufferedWriter out = new BufferedWriter(new FileWriter("password.txt")))
             {
               out.write(mdpChiffre);
@@ -354,6 +362,10 @@ public final class Administration_Yann extends JPanel{
             {
             questionToDB = createQuestion(questionChoisie.getId_question());        
             qJ.update(questionToDB);
+            JOptionPane.showMessageDialog(null,
+                                        "Question N°" + questionChoisie.getId_question() + "modifiée",
+                                        "Modification de question",
+                                        JOptionPane.INFORMATION_MESSAGE);
             initModifierQuestion();
             }
         });
@@ -362,12 +374,16 @@ public final class Administration_Yann extends JPanel{
         supprimer.addActionListener((ActionEvent g) -> {
             confirmation = showConfirmDialog(null,
                                         "Vous allez supprimer définitivement la question N°" + questionChoisie.getId_question() +", continuer ?",
-                                        "Nouveau mot de passe",
+                                        "Suppression de question",
                                         2);
             if (confirmation==0)
             {
                 questionToDB = createQuestion(questionChoisie.getId_question());        
                 qJ.update(questionToDB);
+                JOptionPane.showMessageDialog(null,
+                                        "Question N°" + questionChoisie.getId_question() + " supprimée",
+                                        "Suppression de question",
+                                        JOptionPane.INFORMATION_MESSAGE);
                 initModifierQuestion();
             }
         });    
@@ -419,7 +435,12 @@ public final class Administration_Yann extends JPanel{
             {
             questionToDB = createQuestion(0);
             Question_Julien qJ = new Question_Julien();
-            qJ.create(questionToDB);
+            Question retour;
+            retour = qJ.create(questionToDB);
+            JOptionPane.showMessageDialog(null,
+                                        "Question N°" + retour.getId_question() + " créée",
+                                        "Création de question",
+                                        JOptionPane.INFORMATION_MESSAGE);
             initAjouterQuestion();
             }
         });
