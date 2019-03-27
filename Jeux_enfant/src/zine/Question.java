@@ -57,5 +57,10 @@ public class Question {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
+
+    @Override
+    public String toString() {
+        return id_question + " - " + questions;
+    }
    
 }
