@@ -33,7 +33,6 @@ public class Question_Julien implements DAO_Julien<Question>{
             String sql = "SELECT * FROM "
                + table
                + " WHERE id = ?";
-            System.out.println("pomme de tere");
            PreparedStatement pstmt;
             pstmt = connection.prepareStatement(sql);
            pstmt.setInt(1, id);
