@@ -26,11 +26,11 @@ public class Question {
        
     }
 
-    public Integer getId_question() {
+    public Integer getId() {
         return id_question;
     }
 
-    public void setId_question(Integer id_question) {
+    public void setId(Integer id_question) {
         this.id_question = id_question;
     }
 

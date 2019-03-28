@@ -85,7 +85,7 @@ public class Question_Julien implements DAO_Julien<Question>{
         try {
             String sql = "DELETE FROM "+ table+ " WHERE id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, obj.getId_question());
+            pstmt.setInt(1, obj.getId());
             int nombreLigneImpactees = pstmt.executeUpdate();
             
         } catch (SQLException ex) {
@@ -111,7 +111,7 @@ public class Question_Julien implements DAO_Julien<Question>{
             pstmt.setString(2,obj.getReponse());
             pstmt.setInt(3,obj.getNiveau_question());
             pstmt.executeUpdate();
-            retObj = find(obj.getId_question());
+            retObj = find(obj.getId());
         } catch (SQLException ex) {
             Logger.getLogger(Question_Julien.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,6 +125,31 @@ public class Question_Julien implements DAO_Julien<Question>{
          ArrayList<Question> retObj = new ArrayList<>();
         String sql = "SELECT * FROM "
                + table;
+        try{
+           PreparedStatement pstmt = connection.prepareStatement(sql);          
+           ResultSet rs = pstmt.executeQuery();
+           while(rs.next()){
+            retObj.add (new Question(
+                    rs.getInt("id"),
+                    rs.getString("questions"),
+                    rs.getString("reponse"),
+                    rs.getInt("niveau_question")
+           ));
+           }
+       }
+       catch(SQLException ex){
+           Logger.getLogger(DAO_Julien.class.getName()).log(Level.SEVERE,null,ex);
+       }
+        return retObj;
+
+    }
+    
+    public List<Question> findNiveau(int niveau) {
+
+         ArrayList<Question> retObj = new ArrayList<>();
+        String sql = "SELECT * FROM "
+               + table 
+               + " WHERE niveau_question = niveau";
         try{
            PreparedStatement pstmt = connection.prepareStatement(sql);          
            ResultSet rs = pstmt.executeQuery();

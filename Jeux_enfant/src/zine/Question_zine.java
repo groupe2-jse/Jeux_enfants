@@ -46,6 +46,7 @@ public class Question_zine extends JPanel{
         text = a.getQuestions();
         return text;
     }
+    
     private static int ChoixQuestion()
     {
         int tabId[]={};
@@ -57,7 +58,7 @@ public class Question_zine extends JPanel{
         int nb = r.nextInt((9 - 0) + 1);
         Question_Julien daop = new Question_Julien();
         Question a = daop.find(nb);
-        idRef = a.getId_question();
+        idRef = a.getId();
         nbr = a.getNiveau_question();
         if(nbr != choixNiveau)
         {
