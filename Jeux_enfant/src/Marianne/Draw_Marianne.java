@@ -69,22 +69,16 @@ public class Draw_Marianne extends JPanel {
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    // setCouleur recupere la couleur saisie
                     // lance la fonction sur chaque bouton 
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
-                    leDessin.initColor(leDessin.getG(),((Bouton)e.getSource()).getText());
+                    leDessin.setCouleur(((Bouton)e.getSource()).getText());
+                   
                     
                 }
             });
-            //actionListener
-//            if (s.equals("bleu")) {
-//                jb.addActionListener(new listenerBleu());
-//            }
-//
-//            if (s.equals("rouge")) {
-//                jb.addActionListener(new listenerRouge());
-//            }
-
+           
         }
 
         menu.add(delete, BorderLayout.SOUTH);
