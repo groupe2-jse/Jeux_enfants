@@ -9,6 +9,7 @@ package zine;
 import Marianne.Bouton;
 import Pkg_DAO.Question_Julien;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -83,6 +84,14 @@ public final class Question_zine extends JPanel{
         this.removeAll();
         this.setName("Questions");
         reponse = new LabelAndField("Réponse");
+        reponse.getTextField().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkAnswer(reponse.getTextField().getText(), niveau);
+            }
+            
+        });
+        
         
         reponse.getTextField().getDocument().addDocumentListener(new DocumentListener() {
             
