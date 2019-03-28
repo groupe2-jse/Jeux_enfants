@@ -38,6 +38,16 @@ public class LabelAndField extends JPanel{
         
     }
     
-    
+    public LabelAndField(String pReponse, int size){
+       
+        reponse= new JLabel(pReponse);
+        
+        textField= new JTextField(10);
+        //textField.setPreferredSize(new Dimension(2,2));
+        this.setLayout(new BorderLayout());
+        this.add(reponse,BorderLayout.WEST);
+        this.add(textField, BorderLayout.CENTER);
+        
+    }
     
 }

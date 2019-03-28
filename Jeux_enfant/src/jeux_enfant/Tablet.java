@@ -22,6 +22,7 @@ import javax.swing.event.ChangeEvent;
  */
 public class Tablet extends JFrame{
 
+    
     JPanel contenu;
     int niveau, chosen;
     Menu_Yann menuP;
@@ -50,7 +51,9 @@ public class Tablet extends JFrame{
         this.initGUI();
         this.setContentPane(contenu);
         this.pack();
+        this.setSize(600, 450);
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
