@@ -3,19 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zine;
+
+package Yann;
 
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
  *
- * @author stagldnr
+ * @author Yann Golhen
  */
-public class LabelAndField extends JPanel{
-    
+public class LabelAndPassword extends JPanel{
+
+   
     JLabel reponse;
     JTextField textField;
 
@@ -24,12 +27,11 @@ public class LabelAndField extends JPanel{
     }
     
     
-    public LabelAndField(String pReponse){
+    public LabelAndPassword(String pReponse){
        
         reponse= new JLabel(pReponse);
         
-        textField= new JTextField(10);
-        //textField.setPreferredSize(new Dimension(2,2));
+        textField= new JPasswordField(10);
         this.setLayout(new FlowLayout());
         this.add(reponse);
         this.add(textField);

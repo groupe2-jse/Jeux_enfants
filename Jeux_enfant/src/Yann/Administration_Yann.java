@@ -50,8 +50,9 @@ public final class Administration_Yann extends JPanel{
     List<String> listString = new ArrayList<>();
     ComboBox menuDeroulantQuestions;
     int choix, confirmation;
+    LabelAndPassword askMDP;
     
-    
+    //Constructeur de l'onglet administration
     public Administration_Yann() {
         alreadyShown=false;
         this.initAdmin();
@@ -66,7 +67,7 @@ public final class Administration_Yann extends JPanel{
         global.setLayout(new BorderLayout());
         orga.setLayout(new BoxLayout(orga,BoxLayout.Y_AXIS));
         this.setLayout(new BorderLayout());
-        LabelAndField askMDP = new LabelAndField("Veuillez saisir votre mot de passe");
+        askMDP = new LabelAndPassword("Veuillez saisir votre mot de passe");
         TitledBorder borderAdmin = new TitledBorder("Bienvenue dans l'interface d'administration");
         orga.setBorder(borderAdmin);
 
@@ -207,7 +208,6 @@ public final class Administration_Yann extends JPanel{
         boutonsChoix.add(modifier);
         boutonsChoix.add(ajouter);
         
-        //orga.add(new JLabel("Changez votre mot de passe :"));
         LabelAndField changeMDP = new LabelAndField("Nouveau mot de passe (min 5 caractères)");
         TitledBorder borderNewMDP = new TitledBorder("Changez votre mot de passe :");
         changeMDP.setBorder(borderNewMDP);
