@@ -63,7 +63,7 @@ public class Draw_Marianne extends JPanel {
                     // lance la fonction sur chaque bouton 
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
-                    leDessin.initColor(((Bouton)e.getSource()).getText());
+                    leDessin.initColor(leDessin.getG(),((Bouton)e.getSource()).getText());
                     
                 }
             });

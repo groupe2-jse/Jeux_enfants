@@ -7,17 +7,10 @@ package Marianne;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.image.ImageObserver;
-import java.text.AttributedCharacterIterator;
 import javax.swing.JPanel;
 
 /**
@@ -29,10 +22,16 @@ public class Display_drawing extends JPanel {
 
     int x = 0, y = 0;
     Graphics g;
+    String couleur;
+
+    public Graphics getG() {
+        return g;
+    }
+    
     JPanel affiche = new JPanel();
 
     public Display_drawing() {
-
+        couleur="noir";
         affiche.setBackground(Color.WHITE);
 
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
@@ -48,8 +47,7 @@ public class Display_drawing extends JPanel {
             public void mouseDragged(MouseEvent e) {
 
                 g = affiche.getGraphics();
-                // g.setColor(Color.black);
-                initColor("couleur");
+                initColor(g,couleur);
                 
                 g.drawLine(x, y, e.getX(), e.getY());
 
@@ -68,19 +66,18 @@ public class Display_drawing extends JPanel {
 
 }
     // vraiment fait par moi  
-    public void initColor (String couleur) 
+    public void initColor (Graphics g1, String couleur) 
       {
-          if (couleur.equals("bleu")) {
-              System.out.println("initbleu");
-              // Graphics g = getGraphics() ; 
-               this.g.setColor(Color.BLUE);
+          switch (couleur)
+          {
+              case "bleu" : g1.setColor(Color.BLUE);
+              this.couleur="bleu";break;
+              
+              case "rouge" : g1.setColor(Color.red);
+              this.couleur="rouge";break;
+              
           }
           
-          if (couleur.equals("red")) {
-              
-              // Graphics g = getGraphics() ; 
-                g.setColor(Color.red);
-          }
           
           
     }
