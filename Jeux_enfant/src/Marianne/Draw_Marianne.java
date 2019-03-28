@@ -28,6 +28,7 @@ public class Draw_Marianne extends JPanel {
     JPanel choicePen , pen ; 
     JPanel menu;
     JPanel choiceColor;
+    JPanel deleter;
     Graphics g;
     Bouton jb ; 
     TitledBorder title , title2 , title3; 
@@ -44,10 +45,13 @@ public class Draw_Marianne extends JPanel {
         leDessin = new Display_drawing();
         choiceColor = new JPanel();
         choiceColor.setLayout(new GridLayout(0, 2, 2, 2));
-        title2 = new TitledBorder("Choix de la couleur") ; 
+        title2 = new TitledBorder("Choix de la couleur") ;
+        title3 = new TitledBorder("");
         choiceColor.setBorder(title2);
+        deleter = new JPanel();
+        deleter.setLayout(new BorderLayout());
         delete = new Bouton("Effacer");
-        delete.setBorder(title);
+        deleter.setBorder(title3);
         delete.addActionListener(new ActionListener() {
            @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,9 +64,9 @@ public class Draw_Marianne extends JPanel {
         choicePen.setLayout(new BorderLayout());
         choicePen.setBorder(title); 
         pen = new JPanel();
-        pen.setLayout(new GridLayout(0,2));
+        pen.setLayout(new GridLayout(0,2,2,2));
         String [] differentPen = {
-            "gros" , "fin"
+            "GROS" , "fin"
         }; 
         
         for (String s : differentPen)
@@ -130,8 +134,8 @@ public class Draw_Marianne extends JPanel {
            
         }
 
-        menu.add(delete, BorderLayout.SOUTH);
-
+        deleter.add(delete, BorderLayout.NORTH);
+        menu.add(deleter, BorderLayout.SOUTH);
         menu.add(choicePen, BorderLayout.CENTER);
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
         this.add(menu, BorderLayout.WEST); // j'ajoute  le MenuPanel
