@@ -19,6 +19,11 @@ public class ComboBox extends JPanel{
 
     JComboBox menuDeroulant;
     
+    /**
+     * Constructeur du comboBox
+     * @param title titre de la bordure
+     * @param list Liste des question sous format string
+     */
     public ComboBox(String title, List<String> list) {
         
         menuDeroulant = new JComboBox();
@@ -30,7 +35,11 @@ public class ComboBox extends JPanel{
         this.setBorder(borderComboBox);
         this.add(menuDeroulant);
     }
-
+    
+    /**
+     * getter du menu deroulant
+     * @return une combobox
+     */
     public JComboBox getMenuDeroulant() {
         return menuDeroulant;
     }

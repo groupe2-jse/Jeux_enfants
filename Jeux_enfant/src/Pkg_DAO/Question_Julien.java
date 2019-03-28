@@ -22,6 +22,7 @@ import zine.Question;
 public class Question_Julien implements DAO_Julien<Question>{
     
     private String table = "Questions";
+    int nombreLigneImpactees;
     
     
     @Override
@@ -100,7 +101,7 @@ public class Question_Julien implements DAO_Julien<Question>{
                 +table
                 +" SET questions = ?, "
                 +" reponse = ?, "
-                +" niveau_question = ?, "
+                +" niveau_question = ? "
                 +" WHERE id = ?";
   
 
@@ -109,7 +110,8 @@ public class Question_Julien implements DAO_Julien<Question>{
             pstmt.setString(1,obj.getQuestions());
             pstmt.setString(2,obj.getReponse());
             pstmt.setInt(3,obj.getNiveau_question());
-            pstmt.executeUpdate();
+            pstmt.setInt(4,obj.getId());
+            nombreLigneImpactees = pstmt.executeUpdate();
             retObj = find(obj.getId());
         } catch (SQLException ex) {
             Logger.getLogger(Question_Julien.class.getName()).log(Level.SEVERE, null, ex);
