@@ -11,6 +11,10 @@ import Pkg_DAO.Question_Julien;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BoxLayout;
+import static javax.swing.BoxLayout.LINE_AXIS;
+import static javax.swing.BoxLayout.X_AXIS;
+import static javax.swing.BoxLayout.Y_AXIS;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +26,7 @@ import javax.swing.JPanel;
 public class Question_zine extends JPanel{
 
     LabelAndField Reponse;
+    TwoButton Bouton;
     Bouton suivant;
     JLabel question;
     static int compteur;
@@ -73,12 +78,13 @@ public class Question_zine extends JPanel{
         this.removeAll();
         this.setName("Questions");
        this.Reponse = new LabelAndField("Réponse");
-        this.suivant = new Bouton("Suivant");
+        this.Bouton = new TwoButton();
         this.question = new JLabel(textQuestion(niveau));
-        this.setLayout(new GridLayout(0, 3));
-        this.add(suivant);      
+        this.setLayout(new BoxLayout(this, Y_AXIS));
+        this.add(question);      
         this.add(Reponse);
-        this.add(question);
+        this.add(Bouton);
+        
     }
 
 }

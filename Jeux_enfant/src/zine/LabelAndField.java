@@ -7,6 +7,7 @@ package zine;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -29,12 +30,12 @@ public class LabelAndField extends JPanel{
        
         reponse= new JLabel(pReponse);
         
-        textField= new JTextField(20);
+        textField= new JTextField(10);
         //textField.setPreferredSize(new Dimension(2,2));
+        this.setLayout(new FlowLayout());
+        this.add(reponse);
+        this.add(textField);
         
-        this.setLayout(new BorderLayout());
-        this.add(reponse, BorderLayout.WEST);
-        this.add(textField, BorderLayout.EAST);
     }
     
     
