@@ -24,10 +24,23 @@ public class Display_drawing extends JPanel {
 
     int x = 0, y = 0;
     Graphics g;
+
+    
     Graphics2D g1;
-    String couleur, epaisseur;
+    String couleur, epaisseur, epaisseurReminder;
      BasicStroke line1; 
 
+    public void setEpaisseurReminder(String epaisseurReminder) {
+        this.epaisseurReminder = epaisseurReminder;
+    }
+
+     public String getEpaisseur() {
+        return epaisseur;
+    }
+
+    public String getEpaisseurReminder() {
+        return epaisseurReminder;
+    }
     public Graphics getG() {
         return g;
     }
@@ -37,6 +50,7 @@ public class Display_drawing extends JPanel {
     public Display_drawing() {
         couleur="noir";
         epaisseur = "fin" ;
+        epaisseurReminder = "fin";
         affiche.setBackground(Color.WHITE);
 
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
@@ -108,8 +122,8 @@ public class Display_drawing extends JPanel {
               case "vert" : g1.setColor(Color.green);
               this.couleur="vert"; break;
               
-              case "gomme" : g1.setColor(Color.WHITE);
-              this.couleur="gomme"; break;
+              case "Gomme" : g1.setColor(Color.WHITE);
+              this.couleur="Gomme"; break;
              
              default : g1.setColor(Color.black);
           }      
@@ -124,13 +138,13 @@ public class Display_drawing extends JPanel {
        // Graphics g1 = (Graphics2D)g ; 
         switch (epaisseur)
         {
-            case "gros" : line1 = new BasicStroke(4.0f);
+            case "Gros" : line1 = new BasicStroke(4.0f);
                          g1.setStroke(line1);
-                         this.epaisseur= "gros" ; break; 
+                         this.epaisseur= "Gros" ; break; 
                          
-            case "gomme": line1 = new BasicStroke(15.0f);
+            case "Gomme": line1 = new BasicStroke(15.0f);
                         g1.setStroke(line1);
-                        this.epaisseur= "gomme" ;
+                        this.epaisseur= "Gomme" ;
         }
     }
     

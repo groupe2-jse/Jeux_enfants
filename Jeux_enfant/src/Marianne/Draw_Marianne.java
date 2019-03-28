@@ -77,7 +77,7 @@ public class Draw_Marianne extends JPanel {
         pen = new JPanel();
         pen.setLayout(new GridLayout(0,2,2,2));
         String [] differentPen = {
-            "gros" , "fin"
+            "Gros" , "fin"
         }; 
         
         for (String s : differentPen)
@@ -88,7 +88,7 @@ public class Draw_Marianne extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
-                
+                leDessin.setEpaisseurReminder(((Bouton)e.getSource()).getText());
                 }
             
             }); 
@@ -145,7 +145,11 @@ public class Draw_Marianne extends JPanel {
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
                     leDessin.setCouleur(((Bouton)e.getSource()).getText());
-                    leDessin.setEpaisseur("fin");
+                    if (leDessin.getEpaisseur().equals("Gomme"))
+                    {
+                        leDessin.setEpaisseur(leDessin.getEpaisseurReminder());
+                    }
+                    
                 }
             });
            
