@@ -7,12 +7,10 @@ package Marianne;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -77,7 +75,7 @@ public class Draw_Marianne extends JPanel {
         pen = new JPanel();
         pen.setLayout(new GridLayout(0,2,2,2));
         String [] differentPen = {
-            "Gros" , "fin"
+            "Gros" , "Fin"
         }; 
         
         for (String s : differentPen)
@@ -88,7 +86,7 @@ public class Draw_Marianne extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
-                
+                leDessin.setEpaisseurReminder(((Bouton)e.getSource()).getText());
                 }
             
             }); 
@@ -145,7 +143,11 @@ public class Draw_Marianne extends JPanel {
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
                     leDessin.setCouleur(((Bouton)e.getSource()).getText());
-                    leDessin.setEpaisseur("fin");
+                    if (leDessin.getEpaisseur().equals("Gomme"))
+                    {
+                        leDessin.setEpaisseur(leDessin.getEpaisseurReminder());
+                    }
+                    
                 }
             });
            
