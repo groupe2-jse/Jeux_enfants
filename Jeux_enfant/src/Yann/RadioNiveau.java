@@ -31,10 +31,18 @@ public class RadioNiveau extends JPanel{
         return bNiveau2;
     }
     
-    public RadioNiveau() {
+    public RadioNiveau(int choix) {
         
+        if (choix==1)
+        {
         bNiveau1 = new JRadioButton("Niveau 1",true);
         bNiveau2 = new JRadioButton("Niveau 2",false);
+        }
+        else
+        {
+           bNiveau1 = new JRadioButton("Niveau 1",false);
+           bNiveau2 = new JRadioButton("Niveau 2",true); 
+        }
         
         ButtonGroup btrg = new ButtonGroup();
         btrg.add(bNiveau1);
