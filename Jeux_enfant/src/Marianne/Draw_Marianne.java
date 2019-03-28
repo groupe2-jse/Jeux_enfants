@@ -10,8 +10,9 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -22,11 +23,13 @@ public class Draw_Marianne extends JPanel {
 
     // JPanel option ; // declaration d'objet
     Display_drawing leDessin;
-    Bouton color, delete, choicePen;
+    Bouton delete ; 
+    JPanel choicePen , pen ; 
     JPanel menu;
     JPanel choiceColor;
     Graphics g;
     Bouton jb ; 
+    TitledBorder title , title2; 
     //Draw_Marianne tableau = new Draw_Marianne(); 
 
     public Draw_Marianne() {
@@ -40,18 +43,33 @@ public class Draw_Marianne extends JPanel {
         leDessin = new Display_drawing();
         choiceColor = new JPanel();
         choiceColor.setLayout(new GridLayout(0, 2));
-        color = new Bouton("Couleur");
+        title2 = new TitledBorder("Choix de la couleur") ; 
+        choiceColor.setBorder(title2);
         delete = new Bouton("Effacer");
-        
         delete.addActionListener(new ActionListener() {
-            
-            @Override
+           @Override
             public void actionPerformed(ActionEvent e) {
                 initDraw();
             }
         });
         
-        choicePen = new Bouton("Forme du crayon");
+        choicePen = new JPanel();
+        title = new TitledBorder("Choix du crayon") ; 
+        choicePen.setLayout(new BorderLayout());
+        choicePen.setBorder(title); 
+        pen = new JPanel();
+        pen.setLayout(new GridLayout(0,2));
+        String [] differentPen = {
+            "gros" , "fin"
+        }; 
+        
+        for (String s : differentPen)
+        {
+            jb  = new Bouton(s); 
+            pen.add(jb) ; 
+        } 
+        
+        choicePen.add(pen, BorderLayout.CENTER); 
         menu = new JPanel();
         menu.setLayout(new BorderLayout());
         //menu.add(color, BorderLayout.NORTH) ; 
