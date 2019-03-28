@@ -6,6 +6,7 @@
 package Marianne;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -27,9 +28,10 @@ public class Draw_Marianne extends JPanel {
     JPanel choicePen , pen ; 
     JPanel menu;
     JPanel choiceColor;
+    JPanel deleter;
     Graphics g;
     Bouton jb ; 
-    TitledBorder title , title2; 
+    TitledBorder title , title2 , title3; 
     //Draw_Marianne tableau = new Draw_Marianne(); 
 
     public Draw_Marianne() {
@@ -42,10 +44,14 @@ public class Draw_Marianne extends JPanel {
         this.removeAll();
         leDessin = new Display_drawing();
         choiceColor = new JPanel();
-        choiceColor.setLayout(new GridLayout(0, 2));
-        title2 = new TitledBorder("Choix de la couleur") ; 
+        choiceColor.setLayout(new GridLayout(0, 2, 2, 2));
+        title2 = new TitledBorder("Choix de la couleur") ;
+        title3 = new TitledBorder("");
         choiceColor.setBorder(title2);
+        deleter = new JPanel();
+        deleter.setLayout(new BorderLayout());
         delete = new Bouton("Effacer");
+        deleter.setBorder(title3);
         delete.addActionListener(new ActionListener() {
            @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,9 +64,9 @@ public class Draw_Marianne extends JPanel {
         choicePen.setLayout(new BorderLayout());
         choicePen.setBorder(title); 
         pen = new JPanel();
-        pen.setLayout(new GridLayout(0,2));
+        pen.setLayout(new GridLayout(0,2,2,2));
         String [] differentPen = {
-            "gros" , "fin"
+            "GROS" , "fin"
         }; 
         
         for (String s : differentPen)
@@ -89,6 +95,34 @@ public class Draw_Marianne extends JPanel {
 
         for (String s : differentColor) {
             jb = new Bouton(s);
+            switch(s){
+                case "bleu":
+                    jb.setBackground(Color.blue);
+                    jb.setForeground(Color.white);
+                break;    
+                case "rouge":
+                    jb.setBackground(Color.red);
+                break;
+                case "jaune":
+                    jb.setBackground(Color.yellow);
+                break;    
+                case "gris":
+                    jb.setBackground(Color.gray);
+                break;
+                case "noir":
+                    jb.setBackground(Color.black); 
+                    jb.setForeground(Color.white);
+                break;    
+                case "rose":
+                    jb.setBackground(Color.pink);
+                break;
+                case "violet":
+                    jb.setBackground(Color.magenta);
+                break;    
+                case "vert":
+                    jb.setBackground(Color.green);
+                break;
+            }
             choiceColor.add(jb);
             
             jb.addActionListener(new ActionListener() {
@@ -104,8 +138,8 @@ public class Draw_Marianne extends JPanel {
            
         }
 
-        menu.add(delete, BorderLayout.SOUTH);
-
+        deleter.add(delete, BorderLayout.NORTH);
+        menu.add(deleter, BorderLayout.SOUTH);
         menu.add(choicePen, BorderLayout.CENTER);
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
         this.add(menu, BorderLayout.WEST); // j'ajoute  le MenuPanel

@@ -7,9 +7,11 @@
 package Lorenzo;
 
 import Marianne.Bouton;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -28,35 +30,41 @@ public final class Calcul_Lorenzo extends JPanel{
         this.setName("Calcul");
         CreateOperation operation = new CreateOperation(niveau);
         d = new Display(operation);
+        TitledBorder tb1 = new TitledBorder("");
+        d.setBorder(tb1);
         d.getB1().addActionListener((ActionEvent e) -> {
             initCalcul(niveau);
         });
         d.getB2().addActionListener((ActionEvent e) -> {
             if(!((Bouton)e.getSource()).isAlreadyHit()){
-            d.getLb2().setText("La Solution est: " + operation.toString2(operation.getOperationResult()));
+            d.getLb2().setText("  La Solution est: " + operation.toString2(operation.getOperationResult()));
             d.getCalculZone().getTextField().requestFocus();
             }
         });
         d.getB3().addActionListener((ActionEvent e) -> {
             //System.out.println(operation.toString2(operation.getOperationResult()));
             if(operation.toString2(operation.getOperationResult()).equalsIgnoreCase(d.getCalculZone().getTextField().getText())){
-                d.getLb3().setText("Réponse correcte! Bravo!");
+                d.getLb3().setForeground(Color.green);
+                d.getLb3().setText("  Réponse correcte! Bravo!");
             }
             else{
-                d.getLb3().setText("Réponse fausse, oups.");
+                d.getLb3().setForeground(Color.red);
+                d.getLb3().setText("  Réponse fausse, oups.");
                 d.getCalculZone().getTextField().requestFocus();
             }
         });
         d.getCalculZone().getTextField().addActionListener((ActionEvent e) -> {
             //System.out.println(operation.toString2(operation.getOperationResult()));
             if(operation.toString2(operation.getOperationResult()).equalsIgnoreCase(d.getCalculZone().getTextField().getText())){
-                d.getLb3().setText("Réponse correcte! Bravo!");
+                d.getLb3().setForeground(Color.green);
+                d.getLb3().setText("  Réponse correcte! Bravo!");
                 d.getCalculZone().getTextField().addActionListener((ActionEvent e2) -> {
                     initCalcul(niveau);
                 });
             }
             else{
-                d.getLb3().setText("Réponse fausse, oups.");
+                d.getLb3().setForeground(Color.red);
+                d.getLb3().setText("  Réponse fausse, oups.");
                 d.getCalculZone().getTextField().requestFocus();
             }
         });

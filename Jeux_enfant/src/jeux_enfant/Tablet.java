@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
-
+        
 
 /**
  *
@@ -22,6 +22,7 @@ import javax.swing.event.ChangeEvent;
  */
 public class Tablet extends JFrame{
 
+    
     JPanel contenu;
     int niveau, chosen;
     Menu_Yann menuP;
@@ -44,13 +45,14 @@ public class Tablet extends JFrame{
         adminShown=false;
         //initialisation de la fenetre principale
         this.setTitle(nom);
-        this.setSize(500,500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.initGUI();
         this.setContentPane(contenu);
         this.pack();
+        this.setSize(600, 300);
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

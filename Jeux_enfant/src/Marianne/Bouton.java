@@ -6,6 +6,7 @@
 
 package Marianne;
 
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 
@@ -35,7 +36,13 @@ public class Bouton extends JButton{
         super(name);
         this.setFont(font);
     }
-
+    
+    public Bouton(String name, Font font, Color couleur){
+        super(name);
+        this.setFont(font);
+        this.setBackground(couleur);
+    }
+    
     public Bouton(String name){
         super(name);
         alreadyHit=false;
