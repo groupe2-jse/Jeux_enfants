@@ -7,6 +7,7 @@
 package Lorenzo;
 
 import Marianne.Bouton;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -40,9 +41,11 @@ public final class Calcul_Lorenzo extends JPanel{
         d.getB3().addActionListener((ActionEvent e) -> {
             //System.out.println(operation.toString2(operation.getOperationResult()));
             if(operation.toString2(operation.getOperationResult()).equalsIgnoreCase(d.getCalculZone().getTextField().getText())){
+                d.getLb3().setForeground(Color.green);
                 d.getLb3().setText("Réponse correcte! Bravo!");
             }
             else{
+                d.getLb3().setForeground(Color.red);
                 d.getLb3().setText("Réponse fausse, oups.");
                 d.getCalculZone().getTextField().requestFocus();
             }
@@ -50,12 +53,14 @@ public final class Calcul_Lorenzo extends JPanel{
         d.getCalculZone().getTextField().addActionListener((ActionEvent e) -> {
             //System.out.println(operation.toString2(operation.getOperationResult()));
             if(operation.toString2(operation.getOperationResult()).equalsIgnoreCase(d.getCalculZone().getTextField().getText())){
+                d.getLb3().setForeground(Color.green);
                 d.getLb3().setText("Réponse correcte! Bravo!");
                 d.getCalculZone().getTextField().addActionListener((ActionEvent e2) -> {
                     initCalcul(niveau);
                 });
             }
             else{
+                d.getLb3().setForeground(Color.red);
                 d.getLb3().setText("Réponse fausse, oups.");
                 d.getCalculZone().getTextField().requestFocus();
             }
