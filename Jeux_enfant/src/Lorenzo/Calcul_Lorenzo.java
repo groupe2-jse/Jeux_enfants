@@ -6,6 +6,7 @@
 
 package Lorenzo;
 
+import Marianne.Bouton;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
@@ -28,8 +29,9 @@ public final class Calcul_Lorenzo extends JPanel{
             initCalcul(niveau);
         });
         d.getB2().addActionListener((ActionEvent e) -> {
-            //System.out.println(operation.toString2(operation.getOperationResult()));
+            if(!((Bouton)e.getSource()).isAlreadyHit()){
             d.getLb2().setText("La Solution est: " + operation.toString2(operation.getOperationResult()));
+            }
         });
         d.getB3().addActionListener((ActionEvent e) -> {
             //System.out.println(operation.toString2(operation.getOperationResult()));
