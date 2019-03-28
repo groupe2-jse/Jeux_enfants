@@ -6,6 +6,7 @@
 
 package zine;
 
+import Marianne.Bouton;
 import Pkg_DAO.Question_Julien;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -20,21 +21,15 @@ import javax.swing.JPanel;
  */
 public class Question_zine extends JPanel{
 
-    JPanel Reponse;
-    JButton suivant;
+    LabelAndField Reponse;
+    Bouton suivant;
     JLabel question;
     static int compteur;
     
-    public Question_zine() {
+    public Question_zine(int niveau) {
         
-        this.Reponse = new LabelAndField("Réponse");
-        this.suivant = new Button("Suivant");
-        this.question = new JLabel(textQuestion(1));
-        this.setLayout(new GridLayout(1, 3));
-        this.add(suivant);      
-        this.add(Reponse);
-        this.add(question);
         
+        this.initQuestion(niveau);
         
     }
     
@@ -75,7 +70,15 @@ public class Question_zine extends JPanel{
     }
  
     public void initQuestion(int niveau) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.removeAll();
+        this.setName("Questions");
+       this.Reponse = new LabelAndField("Réponse");
+        this.suivant = new Bouton("Suivant");
+        this.question = new JLabel(textQuestion(niveau));
+        this.setLayout(new GridLayout(0, 3));
+        this.add(suivant);      
+        this.add(Reponse);
+        this.add(question);
     }
 
 }

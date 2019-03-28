@@ -8,12 +8,7 @@ package Yann;
 
 import Lorenzo.Calcul_Lorenzo;
 import Marianne.Draw_Marianne;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import jeux_enfant.Tablet;
 import zine.Question_zine;
 
 /**
@@ -25,7 +20,7 @@ public class Onglets extends JTabbedPane{
     
     Draw_Marianne draw ;
     Calcul_Lorenzo calcul;
-    //Question_zine question;
+    Question_zine question;
 
     public Draw_Marianne getDraw() {
         return draw;
@@ -35,16 +30,16 @@ public class Onglets extends JTabbedPane{
         return calcul;
     }
 
-//    public Question_zine getQuestion() {
-//        return question;
-//    }
+    public Question_zine getQuestion() {
+        return question;
+    }
     
     public Onglets(int niveau) {
         
         draw = new Draw_Marianne();
         calcul = new Calcul_Lorenzo(niveau);
-        //question = new Question_zine();
-        JPanel question = new JPanel();
+        question = new Question_zine(niveau);
+        //JPanel question = new JPanel();
         this.add(draw);
         this.add(calcul);
         this.add(question);
