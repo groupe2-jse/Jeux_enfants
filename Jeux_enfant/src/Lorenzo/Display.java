@@ -75,12 +75,12 @@ public class Display extends JPanel{
     public Display(CreateOperation operation){    
         
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-        this.setBackground(Color.lightGray);
+        this.setBackground(Color.white);
         calculZone = new CalculAndTextField(operation.getCalcul(), 3, new Font("ComicSansMS", Font.BOLD, 50));
-        calculZone.setBackground(Color.lightGray);
+        calculZone.setBackground(Color.white);
         bottomButtons = new JPanel();
         bottomButtons.setLayout(new GridLayout(0, 2, 100, 10));
-        bottomButtons.setBackground(Color.lightGray);
+        bottomButtons.setBackground(Color.white);
         f1 = new Font("ComicSansMs", Font.BOLD, 20);
         f2 = new Font("ComicSansMs", Font.BOLD, 14);
         

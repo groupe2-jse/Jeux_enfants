@@ -121,7 +121,7 @@ public final class CreateOperation {
     }
     @Override
     public String toString(){
-        return(num1 + " " + operand + " " + num2 + " = ");
+        return(" " + num1 + " " + operand + " " + num2 + " = ");
     }
     public String toString2(int machin){
         return ("" + machin);

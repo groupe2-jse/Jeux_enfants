@@ -8,9 +8,11 @@ package Lorenzo;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -20,10 +22,14 @@ public class CalculAndTextField extends JPanel{
     JLabel calcul;
     JTextField textField;
     Font font;
+    
     public CalculAndTextField(String calcul, int size, Font font){
         this.font = font;
         this.calcul= new JLabel(calcul);
+        TitledBorder tb1 = new TitledBorder("");
+        this.calcul.setBorder(tb1);
         this.calcul.setFont(font);
+        this.calcul.setBorder(BorderFactory.createBevelBorder(2));
         this.textField= new JTextField(size);
         this.textField.setFont(font);
         this.setLayout(new BorderLayout());

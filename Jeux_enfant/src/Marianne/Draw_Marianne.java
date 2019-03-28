@@ -6,6 +6,7 @@
 package Marianne;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -29,7 +30,7 @@ public class Draw_Marianne extends JPanel {
     JPanel choiceColor;
     Graphics g;
     Bouton jb ; 
-    TitledBorder title , title2; 
+    TitledBorder title , title2 , title3; 
     //Draw_Marianne tableau = new Draw_Marianne(); 
 
     public Draw_Marianne() {
@@ -42,10 +43,11 @@ public class Draw_Marianne extends JPanel {
         this.removeAll();
         leDessin = new Display_drawing();
         choiceColor = new JPanel();
-        choiceColor.setLayout(new GridLayout(0, 2));
+        choiceColor.setLayout(new GridLayout(0, 2, 2, 2));
         title2 = new TitledBorder("Choix de la couleur") ; 
         choiceColor.setBorder(title2);
         delete = new Bouton("Effacer");
+        delete.setBorder(title);
         delete.addActionListener(new ActionListener() {
            @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,6 +85,34 @@ public class Draw_Marianne extends JPanel {
 
         for (String s : differentColor) {
             jb = new Bouton(s);
+            switch(s){
+                case "bleu":
+                    jb.setBackground(Color.blue);
+                    jb.setForeground(Color.white);
+                break;    
+                case "rouge":
+                    jb.setBackground(Color.red);
+                break;
+                case "jaune":
+                    jb.setBackground(Color.yellow);
+                break;    
+                case "gris":
+                    jb.setBackground(Color.gray);
+                break;
+                case "noir":
+                    jb.setBackground(Color.black); 
+                    jb.setForeground(Color.white);
+                break;    
+                case "rose":
+                    jb.setBackground(Color.pink);
+                break;
+                case "violet":
+                    jb.setBackground(Color.magenta);
+                break;    
+                case "vert":
+                    jb.setBackground(Color.green);
+                break;
+            }
             choiceColor.add(jb);
             
             jb.addActionListener(new ActionListener() {
