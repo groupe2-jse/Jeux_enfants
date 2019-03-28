@@ -23,12 +23,7 @@ public final class Calcul_Lorenzo extends JPanel{
     
     public void initCalcul(int niveau)
     {
-        SwingUtilities.invokeLater( new Runnable() { 
-
-            public void run() { 
-                d.getCalculZone().getTextField().requestFocus(); 
-            } 
-        } );
+        
         this.removeAll();
         this.setName("Calcul");
         CreateOperation operation = new CreateOperation(niveau);
@@ -65,7 +60,13 @@ public final class Calcul_Lorenzo extends JPanel{
                 d.getCalculZone().getTextField().requestFocus();
             }
         });
-        this.add(d);        
+        this.add(d); 
+        SwingUtilities.invokeLater( new Runnable() { 
+
+            public void run() { 
+                d.getCalculZone().getTextField().requestFocus(); 
+            } 
+        } );
     }
 }
 
