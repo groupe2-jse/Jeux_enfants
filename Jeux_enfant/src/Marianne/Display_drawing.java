@@ -124,7 +124,7 @@ public class Display_drawing extends JPanel {
        // Graphics g1 = (Graphics2D)g ; 
         switch (epaisseur)
         {
-            case "GROS" : line1 = new BasicStroke(4.0f);
+            case "gros" : line1 = new BasicStroke(4.0f);
                          g1.setStroke(line1);
                          this.epaisseur= "gros" ; break; 
                          

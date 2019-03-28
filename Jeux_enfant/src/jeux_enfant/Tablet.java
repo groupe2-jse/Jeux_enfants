@@ -50,7 +50,7 @@ public class Tablet extends JFrame{
         this.initGUI();
         this.setContentPane(contenu);
         this.pack();
-        this.setSize(600, 300);
+        this.setSize(600, 325);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

@@ -50,9 +50,9 @@ public class Draw_Marianne extends JPanel {
         choiceColor.setBorder(title2);
         effacer = new JPanel();
         effacer.setLayout(new BorderLayout());
-        delete = new Bouton("Tout effacer");
+        delete = new Bouton("Effacer");
         
-        gomme = new Bouton ("gomme"); 
+        gomme = new Bouton ("Gomme"); 
         gomme.addActionListener(new ActionListener() {
             @Override
                 public void actionPerformed(ActionEvent e) {
@@ -61,8 +61,8 @@ public class Draw_Marianne extends JPanel {
                 }
         });
         effacer.setBorder(title3);
-        effacer.add(delete, BorderLayout.CENTER); 
-        effacer.add(gomme, BorderLayout.WEST); 
+        effacer.add(delete, BorderLayout.NORTH); 
+        effacer.add(gomme, BorderLayout.SOUTH); 
         delete.addActionListener(new ActionListener() {
            @Override
             public void actionPerformed(ActionEvent e) {
