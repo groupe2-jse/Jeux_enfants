@@ -86,8 +86,10 @@ public class Display extends JPanel{
         b3 = new Bouton("Vérifier réponse",f2);
         
         lb1= new JLabel(" ");
-        lb2= new JLabel("");
-        lb3= new JLabel("TEST AFFICHAGE VERIFICATION");
+        lb2= new JLabel(" ");
+        lb2.setFont(f1);
+        lb3= new JLabel(" ");
+        lb3.setFont(f1);
         
         bottomButtons.add(lb1);
         bottomButtons.add(b1);
