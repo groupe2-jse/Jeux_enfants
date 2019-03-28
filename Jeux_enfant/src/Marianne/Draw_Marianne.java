@@ -24,12 +24,12 @@ public class Draw_Marianne extends JPanel {
 
     // JPanel option ; // declaration d'objet
     Display_drawing leDessin;
-    Bouton delete ; 
+    Bouton delete, gomme ; 
     JPanel choicePen , pen ; 
     JPanel menu;
     JPanel choiceColor;
-    JPanel deleter;
-    Graphics g;
+    JPanel effacer;
+   // Graphics g;
     Bouton jb ; 
     TitledBorder title , title2 , title3; 
     //Draw_Marianne tableau = new Draw_Marianne(); 
@@ -48,10 +48,21 @@ public class Draw_Marianne extends JPanel {
         title2 = new TitledBorder("Choix de la couleur") ;
         title3 = new TitledBorder("");
         choiceColor.setBorder(title2);
-        deleter = new JPanel();
-        deleter.setLayout(new BorderLayout());
-        delete = new Bouton("Effacer");
-        deleter.setBorder(title3);
+        effacer = new JPanel();
+        effacer.setLayout(new BorderLayout());
+        delete = new Bouton("Tout effacer");
+        
+        gomme = new Bouton ("gomme"); 
+        gomme.addActionListener(new ActionListener() {
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
+                leDessin.setCouleur(((Bouton)e.getSource()).getText()); 
+                }
+        });
+        effacer.setBorder(title3);
+        effacer.add(delete, BorderLayout.CENTER); 
+        effacer.add(gomme, BorderLayout.WEST); 
         delete.addActionListener(new ActionListener() {
            @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,7 +77,7 @@ public class Draw_Marianne extends JPanel {
         pen = new JPanel();
         pen.setLayout(new GridLayout(0,2,2,2));
         String [] differentPen = {
-            "GROS" , "fin"
+            "gros" , "fin"
         }; 
         
         for (String s : differentPen)
@@ -77,6 +88,7 @@ public class Draw_Marianne extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
+                
                 }
             
             }); 
@@ -132,14 +144,15 @@ public class Draw_Marianne extends JPanel {
                     // lance la fonction sur chaque bouton 
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
-                    leDessin.setCouleur(((Bouton)e.getSource()).getText());   
+                    leDessin.setCouleur(((Bouton)e.getSource()).getText());
+                    leDessin.setEpaisseur("fin");
                 }
             });
            
         }
 
-        deleter.add(delete, BorderLayout.NORTH);
-        menu.add(deleter, BorderLayout.SOUTH);
+        effacer.add(delete, BorderLayout.NORTH);
+        menu.add(effacer, BorderLayout.SOUTH);
         menu.add(choicePen, BorderLayout.CENTER);
         this.setLayout(new BorderLayout()); // j'identifie les futurs emplacements
         this.add(menu, BorderLayout.WEST); // j'ajoute  le MenuPanel

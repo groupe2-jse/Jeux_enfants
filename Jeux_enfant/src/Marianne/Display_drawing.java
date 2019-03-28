@@ -26,7 +26,7 @@ public class Display_drawing extends JPanel {
     Graphics g;
     Graphics2D g1;
     String couleur, epaisseur;
-     BasicStroke line1, line2 ; 
+     BasicStroke line1; 
 
     public Graphics getG() {
         return g;
@@ -52,9 +52,11 @@ public class Display_drawing extends JPanel {
             public void mouseDragged(MouseEvent e) {
 
                 g = affiche.getGraphics();
-                g1 = (Graphics2D)g;
+                g1 = (Graphics2D)g; 
+                
                initColor(g,couleur);
                initLine ( epaisseur); 
+               
                
                 
                 g1.drawLine(x, y, e.getX(), e.getY());
@@ -106,7 +108,10 @@ public class Display_drawing extends JPanel {
               case "vert" : g1.setColor(Color.green);
               this.couleur="vert"; break;
               
-              default : g1.setColor(Color.black);
+              case "gomme" : g1.setColor(Color.WHITE);
+              this.couleur="gomme"; break;
+             
+             default : g1.setColor(Color.black);
           }      
     }
     
@@ -122,7 +127,13 @@ public class Display_drawing extends JPanel {
             case "gros" : line1 = new BasicStroke(4.0f);
                          g1.setStroke(line1);
                          this.epaisseur= "gros" ; break; 
+                         
+            case "gomme": line1 = new BasicStroke(15.0f);
+                        g1.setStroke(line1);
+                        this.epaisseur= "gomme" ;
         }
-        
     }
+    
+        
+    
 }
