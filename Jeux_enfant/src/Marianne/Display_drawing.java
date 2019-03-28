@@ -49,8 +49,8 @@ public class Display_drawing extends JPanel {
 
     public Display_drawing() {
         couleur="noir";
-        epaisseur = "fin" ;
-        epaisseurReminder = "fin";
+        epaisseur = "Fin" ;
+        epaisseurReminder = "Fin";
         affiche.setBackground(Color.WHITE);
 
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
