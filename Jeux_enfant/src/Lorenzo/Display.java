@@ -9,8 +9,6 @@ package Lorenzo;
 import Marianne.Bouton;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +21,8 @@ public class Display extends JPanel{
     Font f1,f2;
     Bouton b1,b2,b3;
     JLabel lb1,lb2,lb3;
-    JPanel calculZone,bottomButtons;
+    JPanel bottomButtons;
+    CalculAndTextField calculZone;
 
     public Bouton getB1() {
         return b1;
@@ -100,5 +99,13 @@ public class Display extends JPanel{
         this.add(calculZone);
         this.add(bottomButtons);
 
+    }
+
+    public CalculAndTextField getCalculZone() {
+        return calculZone;
+    }
+
+    public void setCalculZone(CalculAndTextField calculZone) {
+        this.calculZone = calculZone;
     }
 }
