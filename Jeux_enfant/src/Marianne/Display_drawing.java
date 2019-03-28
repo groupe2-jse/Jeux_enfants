@@ -31,7 +31,7 @@ public class Display_drawing extends JPanel {
 
         affiche.setBackground(Color.WHITE);
         
-       this.addMouseListener(new MouseAdapter() {
+       this.addMouseListener(new MouseAdapter() { // mouvement de la souris
             //@Override
             public void mousePressed(MouseEvent e) {
                 x = e.getX();
@@ -39,12 +39,13 @@ public class Display_drawing extends JPanel {
             }
         });
 
-        this.addMouseMotionListener(new MouseMotionAdapter() {
+        this.addMouseMotionListener(new MouseMotionAdapter() {  // mouseEvent : evenement lié au mvt de la souris
             //@Override
             public void mouseDragged(MouseEvent e) {
 
                 Graphics g = affiche.getGraphics();
                 g.drawLine(x, y, e.getX(), e.getY());
+                
                 x = e.getX();
                 y = e.getY();
 
