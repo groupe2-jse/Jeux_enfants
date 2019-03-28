@@ -45,13 +45,30 @@ public class Question_zine extends JPanel{
         String text = "";
         List <Question> liste = new ArrayList();
         Question_Julien daop = new Question_Julien();
-        liste  = daop.findNiveau(niveau);
+        
+        switch(niveau)
+        {
+            case 1:
+                liste  = daop.findNiveau1(niveau);
         text = liste.get(compteur).getQuestions();
         compteur = compteur + 1;
         if(liste.isEmpty())
         {
             text = "C'était la dernière question !";
         }
+        
+            case 2:
+                liste  = daop.findNiveau2(niveau);
+        text = liste.get(compteur).getQuestions();
+        compteur = compteur + 1;
+        if(liste.isEmpty())
+        {
+            text = "C'était la dernière question !";
+        }
+                
+        
+        }
+        
         return text;
     }
  
