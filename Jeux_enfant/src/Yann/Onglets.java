@@ -39,7 +39,6 @@ public class Onglets extends JTabbedPane{
         draw = new Draw_Marianne();
         calcul = new Calcul_Lorenzo(niveau);
         question = new Question_zine(niveau);
-        //JPanel question = new JPanel();
         this.add(draw);
         this.add(calcul);
         this.add(question);
