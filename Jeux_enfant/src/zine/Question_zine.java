@@ -54,7 +54,8 @@ public class Question_zine extends JPanel{
         {
             text = "C'était la dernière question !";
         }
-        
+            break;
+            
             case 2:
                 liste  = daop.findNiveau2(niveau);
         text = liste.get(compteur).getQuestions();
@@ -64,7 +65,10 @@ public class Question_zine extends JPanel{
             text = "C'était la dernière question !";
         }
                 
+        break;
         
+            default : 
+                break;
         }
         
         return text;

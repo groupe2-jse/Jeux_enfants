@@ -30,4 +30,13 @@ public class CalculAndTextField extends JPanel{
         this.add(this.calcul, BorderLayout.WEST);
         this.add(this.textField, BorderLayout.EAST);
     }
+
+    public JTextField getTextField() {
+        return textField;
+    }
+
+    public void setTextField(JTextField textField) {
+        this.textField = textField;
+    }
+    
 }
