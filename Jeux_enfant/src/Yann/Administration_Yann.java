@@ -201,6 +201,7 @@ public final class Administration_Yann extends JPanel{
             {
                 
                 this.getParent().add(new Surprise());
+                ((Onglets)this.getParent()).setSelectedIndex(((Onglets)this.getParent()).getTabCount()-1);
                 return false;
             }
             else

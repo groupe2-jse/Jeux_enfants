@@ -7,6 +7,8 @@
 package Yann;
 
 import Marianne.Bouton;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -21,6 +23,8 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -38,7 +42,8 @@ public final class Surprise extends JPanel{
     boolean hanged, found, letterFound, debugMode, uniqueLetter;
     int MAX_FAILS = 7;
     Bouton bLettre;
-    JPanel keyboard;
+    JPanel keyboard, keyDraw, messages;
+    JTextArea dessinPendu;
     JLabel result, life, answer,congratulations;
     
     public Surprise(){
@@ -63,12 +68,18 @@ public final class Surprise extends JPanel{
         this.removeAll();
         this.setName("Pendu");
         
+        keyDraw = new JPanel();
+        keyDraw.setLayout(new BorderLayout());
+        
         keyboard = new JPanel();
         keyboard.setLayout(new GridLayout(0,10));
         
+        dessinPendu = new JTextArea("");
+        
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         
-        
+        messages=new JPanel();
+        messages.setLayout(new BoxLayout(messages,BoxLayout.Y_AXIS));
         result = new JLabel("");
         life = new JLabel("Vies restantes : " + MAX_FAILS);
         answer = new JLabel("Mot à trouver : " + wordToShow);
@@ -100,11 +111,14 @@ public final class Surprise extends JPanel{
                 }
             });
             keyboard.add(bLettre);
-            this.add(keyboard);
-            this.add(result);
-            this.add(life);
-            this.add(answer);
-            this.add(congratulations);
+            keyDraw.add(keyboard,BorderLayout.EAST);
+            keyDraw.add(dessinPendu,BorderLayout.CENTER);
+            this.add(keyDraw);
+            this.add(messages);
+            messages.add(result);
+            messages.add(life);
+            messages.add(answer);
+            messages.add(congratulations);
             
         }
         
@@ -158,7 +172,9 @@ public final class Surprise extends JPanel{
         }
         fails++;
         life.setText("Vies restantes : " + (MAX_FAILS-fails));
+        dessinPendu.setText(imagePendu(fails));
         return "Désolé cette lettre ne fait pas partie du mot";
+        
 
     }
     
@@ -208,6 +224,21 @@ public final class Surprise extends JPanel{
     private boolean checkHanged()
     {
         return fails == MAX_FAILS;
+    }
+
+    private String imagePendu(int fails) {
+        
+        switch (fails) {
+            case 1 : return "\n\n\n\n\n\n\n-------";
+            case 2 : return "\n   |\n   |\n   |\n   |\n   |\n   |\n-------";
+            case 3 : return "   _____\n   |\n   |\n   |\n   |\n   |\n   |\n-------";
+            case 4 : return "   _____\n   |/\n   |\n   |\n   |\n   |\n   |\n-------";
+            case 5 : return "   _____\n   |/   |\n   |    |\n   |    o\n   |\n   |\n   |\n-------";
+            case 6 : return "   _____\n   |/   |\n   |    |\n   |    o\n   |   /|\\\n   |\n   |\n-------";
+            case 7 : return "   _____\n   |/   |\n   |    |\n   |    o\n   |   /|\\\n   |    |\n   |   / \\ \n   |\n-------";
+            default : return "";          
+        }
+        
     }
     
    

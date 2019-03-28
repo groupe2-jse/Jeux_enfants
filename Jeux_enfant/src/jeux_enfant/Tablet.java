@@ -45,7 +45,6 @@ public class Tablet extends JFrame{
         adminShown=false;
         //initialisation de la fenetre principale
         this.setTitle(nom);
-        this.setSize(500,500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.initGUI();
