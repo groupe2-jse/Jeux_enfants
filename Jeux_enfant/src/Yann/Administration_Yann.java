@@ -52,29 +52,39 @@ public final class Administration_Yann extends JPanel{
     int choix, confirmation;
     LabelAndPassword askMDP;
     
-    //Constructeur de l'onglet administration
+    /**
+     * Constructeur onglet administration
+     */
     public Administration_Yann() {
         alreadyShown=false;
         this.initAdmin();
     }
-
+    
+    /**
+     * Vide et re-remplit l'onglet administration
+     */
     public void initAdmin() {
         alreadyShown=false;
         this.removeAll();
         this.setName("Administration");
+        
+        //panneau inséré à l'onglet (pas utile)
         orga =new JPanel();
         global = new JPanel();
         global.setLayout(new BorderLayout());
         orga.setLayout(new BoxLayout(orga,BoxLayout.Y_AXIS));
         this.setLayout(new BorderLayout());
+        
+        //Champ de saisie du mot de passe
         askMDP = new LabelAndPassword("Veuillez saisir votre mot de passe");
         TitledBorder borderAdmin = new TitledBorder("Bienvenue dans l'interface d'administration");
         orga.setBorder(borderAdmin);
-
+        
         erreur = new JLabel("Mot de passe erroné, veuillez réessayer");
 
         orga.add(askMDP);
         
+        //Quand appui sur entrée sur le champ MDP
         askMDP.getTextField().addActionListener((ActionEvent e) -> {
             if (verifierMDP(askMDP.getTextField().getText()))
             {
@@ -90,6 +100,8 @@ public final class Administration_Yann extends JPanel{
             }
         });
         
+        //Quand le champ mdp est modifié
+        //le message mauvais mot de passe est retiré
         askMDP.getTextField().getDocument().addDocumentListener(new DocumentListener() {
             
             @Override
@@ -132,6 +144,8 @@ public final class Administration_Yann extends JPanel{
         
         //Ajout bouton valider lancant la méthode de vérification
         Bouton checkMDP = new Bouton("Valider");
+        
+        //Si validation, test du MDP, si faux affichage message erreur
         checkMDP.addActionListener((ActionEvent e) -> {
             if (verifierMDP(askMDP.getTextField().getText()))
             {
@@ -147,30 +161,38 @@ public final class Administration_Yann extends JPanel{
             }
         });
         
+        //rechargement de l'ongelt
         orga.add(checkMDP);
         global.add(orga,BorderLayout.CENTER);
         this.add(global,BorderLayout.CENTER);
         askMDP.getTextField().grabFocus();
     }
     
+    /**
+     * Vérification du mot de passe
+     * @param essai le mot saisi dans le champ texte
+     * @return true si mot de passe ok
+     */
     public boolean verifierMDP(String essai)
     {
+        //Chiffrement du mot de passe entré, pour comparaison
         String essaiChiffre="";
         for (int i=0;i<essai.length();i++)
         {
             essaiChiffre+=(char)(essai.charAt(i)+5);
         }
         
-        
+        //Lecture du mot de passe
         try (BufferedReader in = new BufferedReader(new FileReader("password.txt")))
         {
           mdp = in.readLine();
-          
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Tablet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Tablet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //test de comparaison
         if (mdp.equals(essaiChiffre))
             {
                 return true;
@@ -187,6 +209,9 @@ public final class Administration_Yann extends JPanel{
             }
     }
 
+    /**
+     * Chargement de la page après vérification du MDP
+     */
     public void initAdmiValidated() {
         orga.removeAll();
         boutonsChoix = new JPanel(new GridLayout(0,2));
@@ -197,10 +222,12 @@ public final class Administration_Yann extends JPanel{
         Bouton modifier = new Bouton("Modifier");
         Bouton ajouter = new Bouton("Ajouter");
         
+        //Chargement de la page de modification
         modifier.addActionListener((ActionEvent e) -> {
             initModifierQuestion(0);            
         });
         
+        //Chargement de la page d'ajout
         ajouter.addActionListener((ActionEvent e) -> {
             initAjouterQuestion();            
         });
@@ -208,9 +235,12 @@ public final class Administration_Yann extends JPanel{
         boutonsChoix.add(modifier);
         boutonsChoix.add(ajouter);
         
+        //Zone de changement du mot de passe
         LabelAndField changeMDP = new LabelAndField("Nouveau mot de passe (min 5 caractères)");
         TitledBorder borderNewMDP = new TitledBorder("Changez votre mot de passe :");
         changeMDP.setBorder(borderNewMDP);
+        
+        //Listener si appui entrée dans la zone de changement de mot de passe
         changeMDP.getTextField().addActionListener((ActionEvent e) -> {
             if (changeMDP.getTextField().getText().length()>=5)
             {
@@ -230,6 +260,7 @@ public final class Administration_Yann extends JPanel{
             }
         });
         
+        //Quand le champ mdp est modifié
         changeMDP.getTextField().getDocument().addDocumentListener(new DocumentListener() {
             
             @Override
@@ -270,7 +301,11 @@ public final class Administration_Yann extends JPanel{
             }
         });
         
+        
         Bouton validerMDP = new Bouton("Valider");
+        
+        //Rechargement de la page après valdiation
+        //+Pop-up de validation
         validerMDP.addActionListener((ActionEvent e) -> {
             if (changeMDP.getTextField().getText().length()>=5)
             {
@@ -292,19 +327,27 @@ public final class Administration_Yann extends JPanel{
         orga.add(changeMDP);
         orga.add(validerMDP);
     }
-
+    
+    /**
+     * Changement du mot de passe
+     * @param mdp le nouveau mot de passe
+     */
     private void changeMDP(String mdp) {
+        
+        //Chiffrement du mot de passe
         String mdpChiffre="";
         for (int i=0;i<mdp.length();i++)
         {
             mdpChiffre+=(char)(mdp.charAt(i)+5);
         }
         
+        //pop up de confirmation
         confirmation = showConfirmDialog(null,
                                         "Vous allez redéfinir le mot de passe, continuer?",
                                         "Nouveau mot de passe",
                                         2);
         
+        //Si pop validée
         if (confirmation==0)
         {
             changed = new JLabel("Mot de passe modifié avec succès");
@@ -320,21 +363,30 @@ public final class Administration_Yann extends JPanel{
         }
     }
 
+    /**
+     * Création de l'onglet de modification de la question
+     * @param selected l'index de la question choisie dans la liste
+     */
     private void initModifierQuestion(int selected) {
         
                 
         Question_Julien qJ = new Question_Julien();
         listQuestions = qJ.findAll();
         listString.clear();
-                for (Question question : listQuestions)
+        
+        //Création de la liste de strings question
+        for (Question question : listQuestions)
         {
             listString.add(question.toString());
         }
         choix = selected;
+        
+        //Création du menu déroulant des questions
         menuDeroulantQuestions = new ComboBox("Sélectionnez votre question",listString);
         menuDeroulantQuestions.getMenuDeroulant().setSelectedIndex(choix);
         menuDeroulantQuestions.getMenuDeroulant().addActionListener((ActionEvent e) -> {
             
+            //Récupération de l'index de la question pour remplissage textbox et choix niveau
             choix = menuDeroulantQuestions.getMenuDeroulant().getSelectedIndex();
             
             initModifierQuestion(choix);
@@ -344,14 +396,15 @@ public final class Administration_Yann extends JPanel{
             questionChoisie = (Question)listQuestions.toArray()[choix];    
             
         
-        
+            // Création de la zone de question réponse
             qRLTF = new QuestionReponseLTF(questionChoisie.getQuestions(),questionChoisie.getReponse());
         
             boutonsEtNiveau = new JPanel(new GridLayout(0,4,10,10));
         
             TitledBorder borderAjouter = new TitledBorder("Modifiez une question :");
             orga.setBorder(borderAjouter);
-        
+            
+            //Appelle la fonction update avec l'objet question correspondant à l'index
             Bouton valider = new Bouton("Modifier");
             valider.addActionListener((ActionEvent f) -> {
             if (qRLTF.getQuestion().getTextField().getText().length()==0)
@@ -380,6 +433,7 @@ public final class Administration_Yann extends JPanel{
             }
         });
         
+        //Appelle la fonction deleted avec l'objet question correspondant à l'index    
         Bouton supprimer = new Bouton("Supprimer");
         supprimer.addActionListener((ActionEvent g) -> {
             confirmation = showConfirmDialog(null,
@@ -419,7 +473,10 @@ public final class Administration_Yann extends JPanel{
         orga.add(boutonsEtNiveau);
         
     }
-
+    
+    /**
+     * Création de l'onglet d'ajout de question
+     */
     private void initAjouterQuestion() {
         
         orga.removeAll();
@@ -431,6 +488,7 @@ public final class Administration_Yann extends JPanel{
         TitledBorder borderAjouter = new TitledBorder("Ajoutez une question :");
         orga.setBorder(borderAjouter);
         
+        //Appelle la fonction create avec l'objet question récupéré dans les champs
         Bouton valider = new Bouton("Enregistrer");
         valider.addActionListener((ActionEvent e) -> {
             if (qRLTF.getQuestion().getTextField().getText().length()==0)
@@ -480,7 +538,11 @@ public final class Administration_Yann extends JPanel{
         orga.add(qRLTF);
         orga.add(boutonsEtNiveau);
     }
-
+    
+    /**
+     * Création de l'objet question par rapport au champs de l'onglet ajout ou  modifier
+     * @param idQuestion est inutile dans le cas d'un ajout de question, mais sert en modification
+     */
     private Question createQuestion(int idQuestion) {
         
         String question, reponse;
