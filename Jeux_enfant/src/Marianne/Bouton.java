@@ -17,6 +17,7 @@ public class Bouton extends JButton{
 
     boolean alreadyHit;
     String saisie;
+    String couleur ; 
 
     public void setAlreadyHit(boolean alreadyHit) {
         this.alreadyHit = alreadyHit;
