@@ -149,7 +149,7 @@ public class Question_Julien implements DAO_Julien<Question>{
          ArrayList<Question> retObj = new ArrayList<>();
         String sql = "SELECT * FROM "
                + table 
-               + " WHERE niveau_question = niveau";
+               + " WHERE niveau_question = 1";
         try{
            PreparedStatement pstmt = connection.prepareStatement(sql);          
            ResultSet rs = pstmt.executeQuery();
