@@ -7,6 +7,7 @@
 package Lorenzo;
 
 import Marianne.Bouton;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
  * @author Lorenzo Nava-Nava
  */
 public class Display extends JPanel{
-    Font f1,f2;
+    Font f1, f2;
     Bouton b1,b2,b3;
     JLabel lb1,lb2,lb3;
     JPanel bottomButtons;
@@ -74,22 +75,24 @@ public class Display extends JPanel{
     public Display(CreateOperation operation){    
         
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        this.setBackground(Color.lightGray);
         calculZone = new CalculAndTextField(operation.getCalcul(), 3, new Font("ComicSansMS", Font.BOLD, 50));
+        calculZone.setBackground(Color.lightGray);
         bottomButtons = new JPanel();
         bottomButtons.setLayout(new GridLayout(0, 2, 100, 10));
+        bottomButtons.setBackground(Color.lightGray);
+        f1 = new Font("ComicSansMs", Font.BOLD, 20);
+        f2 = new Font("ComicSansMs", Font.BOLD, 14);
         
-        f1 = new Font("ComicSansMS", Font.BOLD, 13);
-        f2 = new Font("ComicSansMs", Font.BOLD, 20);
-        
-        b1 = new Bouton("Autre calcul",f1);
-        b2 = new Bouton("Solution",f1);
-        b3 = new Bouton("Vérifier réponse",f2);
+        b1 = new Bouton("Autre calcul",f1,Color.CYAN);
+        b2 = new Bouton("Solution",f1, Color.GREEN);
+        b3 = new Bouton("Vérifier réponse",f1, Color.ORANGE);
         
         lb1= new JLabel(" ");
         lb2= new JLabel(" ");
-        lb2.setFont(f1);
+        lb2.setFont(f2);
         lb3= new JLabel(" ");
-        lb3.setFont(f1);
+        lb3.setFont(f2);
         
         bottomButtons.add(lb1);
         bottomButtons.add(b1);
