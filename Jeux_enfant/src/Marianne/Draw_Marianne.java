@@ -36,12 +36,21 @@ public class Draw_Marianne extends JPanel {
     }
 
     public void initDraw() {
+        this.removeAll();
         leDessin = new Display_drawing();
         choiceColor = new JPanel();
         choiceColor.setLayout(new GridLayout(0, 2));
         color = new Bouton("Couleur");
         delete = new Bouton("Effacer");
-        delete.addActionListener(new listenerSuppr());
+        
+        delete.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                initDraw();
+            }
+        });
+        
         choicePen = new Bouton("Forme du crayon");
         menu = new JPanel();
         menu.setLayout(new BorderLayout());
@@ -57,6 +66,7 @@ public class Draw_Marianne extends JPanel {
         for (String s : differentColor) {
             jb = new Bouton(s);
             choiceColor.add(jb);
+            
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -86,16 +96,7 @@ public class Draw_Marianne extends JPanel {
         this.add(leDessin, BorderLayout.CENTER);
     }
 
-    public class listenerSuppr implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("ok");
-            initDraw();
-
-        }
-    }
-
+    
    
  }
 
