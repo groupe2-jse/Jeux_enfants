@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         
         //Creation du formulaire, appel du constructeur de Tablet
-        Tablet formulaire = new Tablet("Jeux enfants V1.0");
+        Tablet formulaire = new Tablet("Jeux pour enfants JULZYM");
     }
 
 }

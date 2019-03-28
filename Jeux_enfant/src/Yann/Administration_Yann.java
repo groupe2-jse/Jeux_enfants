@@ -82,7 +82,7 @@ public final class Administration_Yann extends JPanel{
         
         erreur = new JLabel("Mot de passe erroné, veuillez réessayer");
 
-        orga.add(askMDP);
+        orga.add(askMDP,CENTER_ALIGNMENT);
         
         //Quand appui sur entrée sur le champ MDP
         askMDP.getTextField().addActionListener((ActionEvent e) -> {
@@ -162,7 +162,7 @@ public final class Administration_Yann extends JPanel{
         });
         
         //rechargement de l'ongelt
-        orga.add(checkMDP);
+        orga.add(checkMDP,CENTER_ALIGNMENT);
         global.add(orga,BorderLayout.CENTER);
         this.add(global,BorderLayout.CENTER);
         askMDP.getTextField().grabFocus();
