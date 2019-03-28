@@ -77,7 +77,7 @@ public class Draw_Marianne extends JPanel {
         pen = new JPanel();
         pen.setLayout(new GridLayout(0,2,2,2));
         String [] differentPen = {
-            "gros" , "fin"
+            "Gros" , "fin"
         }; 
         
         for (String s : differentPen)
