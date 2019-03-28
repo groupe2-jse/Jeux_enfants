@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -65,6 +66,10 @@ public class Display_drawing extends JPanel {
     this.add(affiche, BorderLayout.CENTER);
 
 }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
     // vraiment fait par moi  
     public void initColor (Graphics g1, String couleur) 
       {
@@ -75,6 +80,29 @@ public class Display_drawing extends JPanel {
               
               case "rouge" : g1.setColor(Color.red);
               this.couleur="rouge";break;
+              
+              case "jaune" : g1.setColor(Color.YELLOW);
+              this.couleur="jaune";break;
+              
+              case "gris" : g1.setColor(Color.gray);
+              this.couleur="gris";break;
+              
+              case "noir" : g1.setColor(Color.black);
+              this.couleur="noir";break;
+              
+              case "rose" : g1.setColor(Color.pink);
+              this.couleur="rose";break;
+              
+              case "violet" : g1.setColor(Color.magenta);
+              this.couleur="violet";break;
+              
+              case "vert" : g1.setColor(Color.green);
+              this.couleur="vert"; break;
+              
+              default : g1.setColor(Color.black);
+             
+                   
+              
               
           }
           
