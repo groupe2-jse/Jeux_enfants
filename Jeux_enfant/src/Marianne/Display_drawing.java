@@ -5,9 +5,11 @@
  */
 package Marianne;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -22,7 +24,9 @@ public class Display_drawing extends JPanel {
 
     int x = 0, y = 0;
     Graphics g;
-    String couleur;
+    Graphics2D g1;
+    String couleur, epaisseur;
+     BasicStroke line1, line2 ; 
 
     public Graphics getG() {
         return g;
@@ -32,6 +36,7 @@ public class Display_drawing extends JPanel {
 
     public Display_drawing() {
         couleur="noir";
+        epaisseur = "fin" ;
         affiche.setBackground(Color.WHITE);
 
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
@@ -47,9 +52,12 @@ public class Display_drawing extends JPanel {
             public void mouseDragged(MouseEvent e) {
 
                 g = affiche.getGraphics();
-                initColor(g,couleur);
+                g1 = (Graphics2D)g;
+               initColor(g,couleur);
+               initLine ( epaisseur); 
+               
                 
-                g.drawLine(x, y, e.getX(), e.getY());
+                g1.drawLine(x, y, e.getX(), e.getY());
 
                 x = e.getX();
                 y = e.getY();
@@ -99,13 +107,22 @@ public class Display_drawing extends JPanel {
               this.couleur="vert"; break;
               
               default : g1.setColor(Color.black);
-             
-                   
-              
-              
-          }
-          
-          
-          
+          }      
+    }
+    
+    public void setEpaisseur(String epaisseur){
+        this.epaisseur = epaisseur ; 
+    }
+    
+    
+    public void initLine(String epaisseur){
+       // Graphics g1 = (Graphics2D)g ; 
+        switch (epaisseur)
+        {
+            case "gros" : line1 = new BasicStroke(4.0f);
+                         g1.setStroke(line1);
+                         this.epaisseur= "gros" ; break; 
+        }
+        
     }
 }

@@ -73,8 +73,14 @@ public class Draw_Marianne extends JPanel {
         {
             jb  = new Bouton(s); 
             pen.add(jb) ; 
-        } 
-        
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
+                }
+            
+            }); 
+        }
         choicePen.add(pen, BorderLayout.CENTER); 
         menu = new JPanel();
         menu.setLayout(new BorderLayout());
@@ -126,9 +132,7 @@ public class Draw_Marianne extends JPanel {
                     // lance la fonction sur chaque bouton 
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
-                    leDessin.setCouleur(((Bouton)e.getSource()).getText());
-                   
-                    
+                    leDessin.setCouleur(((Bouton)e.getSource()).getText());   
                 }
             });
            
