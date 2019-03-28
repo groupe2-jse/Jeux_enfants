@@ -144,12 +144,12 @@ public class Question_Julien implements DAO_Julien<Question>{
 
     }
     
-    public List<Question> findNiveau(int niveau) {
+    public List<Question> findNiveau1(int niveau) {
 
          ArrayList<Question> retObj = new ArrayList<>();
         String sql = "SELECT * FROM "
                + table 
-               + " WHERE niveau_question = niveau";
+               + " WHERE niveau_question = 1";
         try{
            PreparedStatement pstmt = connection.prepareStatement(sql);          
            ResultSet rs = pstmt.executeQuery();
@@ -169,5 +169,29 @@ public class Question_Julien implements DAO_Julien<Question>{
 
     }
     
+        public List<Question> findNiveau2(int niveau) {
+
+         ArrayList<Question> retObj = new ArrayList<>();
+        String sql = "SELECT * FROM "
+               + table 
+               + " WHERE niveau_question = 2";
+        try{
+           PreparedStatement pstmt = connection.prepareStatement(sql);          
+           ResultSet rs = pstmt.executeQuery();
+           while(rs.next()){
+            retObj.add (new Question(
+                    rs.getInt("id"),
+                    rs.getString("questions"),
+                    rs.getString("reponse"),
+                    rs.getInt("niveau_question")
+           ));
+           }
+       }
+       catch(SQLException ex){
+           Logger.getLogger(DAO_Julien.class.getName()).log(Level.SEVERE,null,ex);
+       }
+        return retObj;
+
+    }
     
 }
