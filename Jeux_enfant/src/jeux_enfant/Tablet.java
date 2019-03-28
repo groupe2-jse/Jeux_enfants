@@ -12,11 +12,7 @@ import Yann.Onglets;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 
 

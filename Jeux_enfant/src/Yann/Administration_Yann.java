@@ -388,8 +388,14 @@ public final class Administration_Yann extends JPanel{
                                         2);
             if (confirmation==0)
             {
-                questionToDB = createQuestion(questionChoisie.getId());        
-                qJ.deleted(questionToDB);
+                questionToDB = createQuestion(questionChoisie.getId());
+                try
+                {
+                    qJ.deleted(questionToDB);
+                }
+                catch(Exception e){
+                    
+                }
                 JOptionPane.showMessageDialog(null,
                                         "Question N°" + questionChoisie.getId() + " supprimée",
                                         "Suppression de question",
@@ -460,7 +466,14 @@ public final class Administration_Yann extends JPanel{
         retour.addActionListener((ActionEvent e) -> {
             initAdmiValidated();
         });
-        radioNiveau = new RadioNiveau(questionChoisie.getNiveau_question());
+        if (choix!=0)
+        {
+            radioNiveau = new RadioNiveau(questionChoisie.getNiveau_question());
+        }
+        else
+        {
+            radioNiveau = new RadioNiveau(1);
+        }
         boutonsEtNiveau.add(radioNiveau);
         boutonsEtNiveau.add(valider);
         boutonsEtNiveau.add(retour);
