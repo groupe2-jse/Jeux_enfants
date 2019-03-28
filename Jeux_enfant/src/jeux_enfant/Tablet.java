@@ -12,11 +12,7 @@ import Yann.Onglets;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 
 
@@ -76,7 +72,7 @@ public class Tablet extends JFrame{
         this.setJMenuBar(menuP);
         menuP.getDraw().addActionListener((ActionEvent e) -> {
             onglets.setSelectedIndex(0);
-            //onglets.getDraw().initDraw();
+            onglets.getDraw().initDraw();
             if (onglets.getTabCount()>3)
             {
             onglets.remove(3);
@@ -96,7 +92,7 @@ public class Tablet extends JFrame{
         
         menuP.getQuestion().addActionListener((ActionEvent e) -> {
             onglets.setSelectedIndex(2);
-            //onglets.getQuestion().initQuestion(niveau);
+            onglets.getQuestion().initQuestion(niveau);
             if (onglets.getTabCount()>3)
             {
             onglets.remove(3);
@@ -108,9 +104,9 @@ public class Tablet extends JFrame{
             setNiveau(1);
             int chosen = onglets.getSelectedIndex();
             switch (chosen){
-                //case 0 : onglets.getDraw().initDraw();break;
+                case 0 : onglets.getDraw().initDraw();break;
                 case 1 : onglets.getCalcul().initCalcul(niveau);break;
-                //case 2 : onglets.getQuestion().initQuestion(niveau);
+                case 2 : onglets.getQuestion().initQuestion(niveau);
             }
         });
         
@@ -118,9 +114,9 @@ public class Tablet extends JFrame{
             setNiveau(2);
             int chosen = onglets.getSelectedIndex();
             switch (chosen){
-                //case 0 : onglets.getDraw().initDraw();break;
+                case 0 : onglets.getDraw().initDraw();break;
                 case 1 : onglets.getCalcul().initCalcul(niveau);break;
-                //case 2 : onglets.getQuestion().initQuestion(niveau);
+                case 2 : onglets.getQuestion().initQuestion(niveau);
             }
         });
         
@@ -136,7 +132,7 @@ public class Tablet extends JFrame{
         onglets.addChangeListener((ChangeEvent e) -> {
             chosen = onglets.getSelectedIndex();
             switch (chosen){
-                case 0 : //onglets.getDraw().initDraw();
+                case 0 : onglets.getDraw().initDraw();
                         if (adminShown)
                         {
                         onglets.remove(onglets.getTabCount()-1);
@@ -148,7 +144,7 @@ public class Tablet extends JFrame{
                         onglets.remove(onglets.getTabCount()-1);
                         adminShown=false;
                         }break;
-                case 2 : //onglets.getQuestion().initQuestion(niveau);
+                case 2 : onglets.getQuestion().initQuestion(niveau);
                         if (adminShown)
                         {
                         onglets.remove(onglets.getTabCount()-1);

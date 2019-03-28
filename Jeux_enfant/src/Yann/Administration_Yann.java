@@ -197,7 +197,7 @@ public final class Administration_Yann extends JPanel{
         Bouton ajouter = new Bouton("Ajouter");
         
         modifier.addActionListener((ActionEvent e) -> {
-            initModifierQuestion();            
+            initModifierQuestion(0);            
         });
         
         ajouter.addActionListener((ActionEvent e) -> {
@@ -320,24 +320,29 @@ public final class Administration_Yann extends JPanel{
         }
     }
 
-    private void initModifierQuestion() {
+    private void initModifierQuestion(int selected) {
         
                 
         Question_Julien qJ = new Question_Julien();
         listQuestions = qJ.findAll();
+        listString.clear();
                 for (Question question : listQuestions)
         {
             listString.add(question.toString());
         }
-        choix=0;
+        choix = selected;
         menuDeroulantQuestions = new ComboBox("Sélectionnez votre question",listString);
+        menuDeroulantQuestions.getMenuDeroulant().setSelectedIndex(choix);
         menuDeroulantQuestions.getMenuDeroulant().addActionListener((ActionEvent e) -> {
+            
             choix = menuDeroulantQuestions.getMenuDeroulant().getSelectedIndex();
             
+            initModifierQuestion(choix);
             });
+        
             orga.removeAll();
-                
-            questionChoisie = (Question)listQuestions.toArray()[choix];
+            questionChoisie = (Question)listQuestions.toArray()[choix];    
+            
         
         
             qRLTF = new QuestionReponseLTF(questionChoisie.getQuestions(),questionChoisie.getReponse());
@@ -365,31 +370,37 @@ public final class Administration_Yann extends JPanel{
             }
             else
             {
-            questionToDB = createQuestion(questionChoisie.getId_question());        
+            questionToDB = createQuestion(questionChoisie.getId());        
             qJ.update(questionToDB);
             JOptionPane.showMessageDialog(null,
-                                        "Question N°" + questionChoisie.getId_question() + "modifiée",
+                                        "Question N°" + questionChoisie.getId() + " modifiée",
                                         "Modification de question",
                                         JOptionPane.INFORMATION_MESSAGE);
-            initModifierQuestion();
+            initModifierQuestion(0);
             }
         });
         
         Bouton supprimer = new Bouton("Supprimer");
         supprimer.addActionListener((ActionEvent g) -> {
             confirmation = showConfirmDialog(null,
-                                        "Vous allez supprimer définitivement la question N°" + questionChoisie.getId_question() +", continuer ?",
+                                        "Vous allez supprimer définitivement la question N°" + questionChoisie.getId() +", continuer ?",
                                         "Suppression de question",
                                         2);
             if (confirmation==0)
             {
-                questionToDB = createQuestion(questionChoisie.getId_question());        
-                qJ.update(questionToDB);
+                questionToDB = createQuestion(questionChoisie.getId());
+                try
+                {
+                    qJ.deleted(questionToDB);
+                }
+                catch(Exception e){
+                    
+                }
                 JOptionPane.showMessageDialog(null,
-                                        "Question N°" + questionChoisie.getId_question() + " supprimée",
+                                        "Question N°" + questionChoisie.getId() + " supprimée",
                                         "Suppression de question",
                                         JOptionPane.INFORMATION_MESSAGE);
-                initModifierQuestion();
+                initModifierQuestion(0);
             }
         });    
             
@@ -398,7 +409,7 @@ public final class Administration_Yann extends JPanel{
             initAdmiValidated();
         });
         
-        radioNiveau = new RadioNiveau();
+        radioNiveau = new RadioNiveau(questionChoisie.getNiveau_question());
         boutonsEtNiveau.add(radioNiveau);
         boutonsEtNiveau.add(valider);
         boutonsEtNiveau.add(supprimer);
@@ -443,7 +454,7 @@ public final class Administration_Yann extends JPanel{
             Question retour;
             retour = qJ.create(questionToDB);
             JOptionPane.showMessageDialog(null,
-                                        "Question N°" + retour.getId_question() + " créée",
+                                        "Question N°" + retour.getId() + " créée",
                                         "Création de question",
                                         JOptionPane.INFORMATION_MESSAGE);
             initAjouterQuestion();
@@ -455,7 +466,14 @@ public final class Administration_Yann extends JPanel{
         retour.addActionListener((ActionEvent e) -> {
             initAdmiValidated();
         });
-        radioNiveau = new RadioNiveau();
+        if (choix!=0)
+        {
+            radioNiveau = new RadioNiveau(questionChoisie.getNiveau_question());
+        }
+        else
+        {
+            radioNiveau = new RadioNiveau(1);
+        }
         boutonsEtNiveau.add(radioNiveau);
         boutonsEtNiveau.add(valider);
         boutonsEtNiveau.add(retour);

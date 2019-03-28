@@ -79,7 +79,6 @@ public final class Surprise extends JPanel{
             sLettre=""+clavier.charAt(i);
             bLettre= new Bouton(sLettre);
             bLettre.addActionListener((ActionEvent e) -> {
-                
                 if (!((Bouton)e.getSource()).isAlreadyHit())
                 {
                     result.setText(checkLetter(((Bouton)e.getSource()).getText().charAt(0)));
@@ -99,7 +98,6 @@ public final class Surprise extends JPanel{
                     ((Bouton)e.getSource()).setAlreadyHit(true);
                     
                 }
-                
             });
             keyboard.add(bLettre);
             this.add(keyboard);
