@@ -23,10 +23,11 @@ import javax.swing.JPanel;
 public class Display_drawing extends JPanel {
 
     int x = 0, y = 0;
+    int x2 = 0, y2=0 ; 
     Graphics g;
     Graphics2D g1;
     String couleur, epaisseur;
-     BasicStroke line1; 
+    BasicStroke line1; 
 
     public Graphics getG() {
         return g;
@@ -42,8 +43,13 @@ public class Display_drawing extends JPanel {
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
             //@Override
             public void mousePressed(MouseEvent e) {
-                x = e.getX();
-                y = e.getY();
+                g = affiche.getGraphics();
+                x2 = e.getX(); 
+                y2 = e.getY(); 
+                g.drawRect(e.getX(), e.getY(), 15, 15);
+               
+//                x = e.getX();
+//                y = e.getY();
             }
         });
 
@@ -53,19 +59,20 @@ public class Display_drawing extends JPanel {
 
                 g = affiche.getGraphics();
                 g1 = (Graphics2D)g; 
-                
-               initColor(g,couleur);
-               initLine ( epaisseur); 
-               
-               
-                
+                initColor(g,couleur);
+                initLine ( epaisseur); 
+               // g1.drawRect(x, y, 6, 6);
+              
                 g1.drawLine(x, y, e.getX(), e.getY());
-
+                
                 x = e.getX();
                 y = e.getY();
 
             }
-        });
+            });
+            
+           
+        
           
 
     this.setLayout(

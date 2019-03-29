@@ -76,6 +76,7 @@ public class Draw_Marianne extends JPanel {
         choicePen.setBorder(title); 
         pen = new JPanel();
         pen.setLayout(new GridLayout(0,2,2,2));
+        
         String [] differentPen = {
             "gros" , "fin"
         }; 
@@ -88,7 +89,6 @@ public class Draw_Marianne extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
-                
                 }
             
             }); 
