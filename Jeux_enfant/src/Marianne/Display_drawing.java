@@ -25,10 +25,51 @@ public class Display_drawing extends JPanel {
     int x = 0, y = 0;
     int x2 = 0, y2=0 ; 
     Graphics g;
-    Graphics2D g1;
-    String couleur, epaisseur;
-    BasicStroke line1; 
 
+    
+    Graphics2D g1;
+    String couleur, epaisseur, epaisseurReminder, shape, shapeReminder, couleurReminder;
+     BasicStroke line1; 
+
+    public String getCouleurReminder() {
+        return couleurReminder;
+    }
+
+    public void setCouleurReminder(String couleurReminder) {
+        this.couleurReminder = couleurReminder;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
+
+    public String getShapeReminder() {
+        return shapeReminder;
+    }
+
+    public void setShapeReminder(String shapeReminder) {
+        this.shapeReminder = shapeReminder;
+    }
+
+    public void setEpaisseurReminder(String epaisseurReminder) {
+        this.epaisseurReminder = epaisseurReminder;
+    }
+
+     public String getEpaisseur() {
+        return epaisseur;
+    }
+
+    public String getEpaisseurReminder() {
+        return epaisseurReminder;
+    }
     public Graphics getG() {
         return g;
     }
@@ -37,7 +78,10 @@ public class Display_drawing extends JPanel {
 
     public Display_drawing() {
         couleur="noir";
-        epaisseur = "fin" ;
+        epaisseur = "Fin" ;
+        epaisseurReminder = "Fin";
+        shape = "Fin";
+        shapeReminder = "Fin";
         affiche.setBackground(Color.WHITE);
 
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
@@ -59,15 +103,37 @@ public class Display_drawing extends JPanel {
 
                 g = affiche.getGraphics();
                 g1 = (Graphics2D)g; 
-                initColor(g,couleur);
-                initLine ( epaisseur); 
-               // g1.drawRect(x, y, 6, 6);
-              
+                
+               initColor(g,couleur);
+               initLine ( epaisseur);
+               initShape(shape);
+               
+               
+                
                 g1.drawLine(x, y, e.getX(), e.getY());
                 
                 x = e.getX();
                 y = e.getY();
 
+            }
+
+            
+            
+            private void initShape(String pShape) {
+                switch (pShape)
+        {
+            case "Carré" : g1.drawRect(x,y,4,4);
+                         shape= "Carré" ; break; 
+                         
+            case "Rond"  : g1.drawOval(x,y,4,4);
+                        shape= "Rond" ; break;
+                        
+            case "Gomme": g1.drawRect(x,y,6,6);
+                        shape= "Gomme" ;
+            
+//            case "Fin": g1.drawRect(x,y,1,1);
+//                        shape= "Fin" ;
+        }
             }
             });
             
@@ -115,8 +181,8 @@ public class Display_drawing extends JPanel {
               case "vert" : g1.setColor(Color.green);
               this.couleur="vert"; break;
               
-              case "gomme" : g1.setColor(Color.WHITE);
-              this.couleur="gomme"; break;
+              case "Gomme" : g1.setColor(Color.WHITE);
+              this.couleur="Gomme"; break;
              
              default : g1.setColor(Color.black);
           }      
@@ -131,13 +197,18 @@ public class Display_drawing extends JPanel {
        // Graphics g1 = (Graphics2D)g ; 
         switch (epaisseur)
         {
-            case "gros" : line1 = new BasicStroke(4.0f);
+            case "Gros" : line1 = new BasicStroke(4.0f);
                          g1.setStroke(line1);
-                         this.epaisseur= "gros" ; break; 
+                         this.epaisseur= "Gros" ; break; 
                          
-            case "gomme": line1 = new BasicStroke(15.0f);
+            case "Fin" : line1 = new BasicStroke(1.0f);
+                         g1.setStroke(line1);
+                         this.epaisseur= "Fin" ;
+                         this.shape = "Fin"; break;
+                         
+            case "Gomme": line1 = new BasicStroke(15.0f);
                         g1.setStroke(line1);
-                        this.epaisseur= "gomme" ;
+                        this.epaisseur= "Gomme" ;
         }
     }
     
