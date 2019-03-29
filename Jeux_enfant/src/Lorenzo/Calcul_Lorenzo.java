@@ -58,9 +58,6 @@ public final class Calcul_Lorenzo extends JPanel{
             if(operation.toString2(operation.getOperationResult()).equalsIgnoreCase(d.getCalculZone().getTextField().getText())){
                 d.getLb3().setForeground(Color.green);
                 d.getLb3().setText("  Réponse correcte! Bravo!");
-                d.getCalculZone().getTextField().addActionListener((ActionEvent e2) -> {
-                    initCalcul(niveau);
-                });
             }
             else{
                 d.getLb3().setForeground(Color.red);
