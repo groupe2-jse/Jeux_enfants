@@ -135,6 +135,25 @@ public class Display_drawing extends JPanel {
 //                        shape= "Fin" ;
         }
             }
+
+            
+            
+            private void initShape(String pShape) {
+                switch (pShape)
+        {
+            case "Carré" : g1.drawRect(x,y,4,4);
+                         shape= "Carré" ; break; 
+                         
+            case "Rond"  : g1.drawOval(x,y,4,4);
+                        shape= "Rond" ; break;
+                        
+            case "Gomme": g1.drawRect(x,y,6,6);
+                        shape= "Gomme" ;
+            
+//            case "Fin": g1.drawRect(x,y,1,1);
+//                        shape= "Fin" ;
+        }
+            }
             });
             
            
