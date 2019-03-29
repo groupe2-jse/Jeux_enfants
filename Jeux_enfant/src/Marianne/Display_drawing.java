@@ -23,13 +23,14 @@ import javax.swing.JPanel;
 public class Display_drawing extends JPanel {
 
     int x = 0, y = 0;
+    int x2 = 0, y2=0 ; 
     Graphics g;
-
-    
     Graphics2D g1;
     String couleur, epaisseur, epaisseurReminder, shape, shapeReminder, couleurReminder;
-     BasicStroke line1; 
+    BasicStroke line1; 
 
+    // reminder permet au prog de se souvenir des derniers parametres enregistres
+    // exemple lors du passage de la gomme au pinceau
     public String getCouleurReminder() {
         return couleurReminder;
     }
@@ -50,6 +51,9 @@ public class Display_drawing extends JPanel {
         this.shape = shape;
     }
 
+    // reminder permet au prog de se souvenir des derniers parametres enregistres
+    // exemple lors du passage de la gomme au pinceau
+    
     public String getShapeReminder() {
         return shapeReminder;
     }
@@ -86,6 +90,7 @@ public class Display_drawing extends JPanel {
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
             //@Override
             public void mousePressed(MouseEvent e) {
+//              
                 x = e.getX();
                 y = e.getY();
             }
@@ -94,26 +99,23 @@ public class Display_drawing extends JPanel {
         this.addMouseMotionListener(new MouseMotionAdapter() {  // mouseEvent : evenement lié au mvt de la souris
             //@Override
             public void mouseDragged(MouseEvent e) {
-
+                
                 g = affiche.getGraphics();
+                // creation d'un objet graphics2D pour utiliser stroke, gestion de la largeur du tracé
                 g1 = (Graphics2D)g; 
                 
                initColor(g,couleur);
                initLine ( epaisseur);
                initShape(shape);
-               
-               
-                
-                g1.drawLine(x, y, e.getX(), e.getY());
-
-                x = e.getX();
-                y = e.getY();
-
+               g1.drawLine(x, y, e.getX(), e.getY());
+               x = e.getX();
+               y = e.getY();
             }
 
             
             
             private void initShape(String pShape) {
+                // forme du pinceau carre ou rond
                 switch (pShape)
         {
             case "Carré" : g1.drawRect(x,y,4,4);
@@ -124,30 +126,25 @@ public class Display_drawing extends JPanel {
                         
             case "Gomme": g1.drawRect(x,y,6,6);
                         shape= "Gomme" ;
-            
-//            case "Fin": g1.drawRect(x,y,1,1);
-//                        shape= "Fin" ;
+                        
         }
-            }
-        });
-          
-
-    this.setLayout(
-    new BorderLayout());
-        
-
-    this.add(affiche, BorderLayout.CENTER);
-
+                
+            }});
+         // gestion des emplacements   
+        this.setLayout(new BorderLayout());
+        this.add(affiche, BorderLayout.CENTER);
 }
 
     public void setCouleur(String couleur) {
         this.couleur = couleur;
     }
     // vraiment fait par moi  
+    
     public void initColor (Graphics g1, String couleur) 
       {
           switch (couleur)
           {
+              // changement de couleur lors de l'affichage
               case "bleu" : g1.setColor(Color.BLUE);
               this.couleur="bleu";break;
               
@@ -185,7 +182,7 @@ public class Display_drawing extends JPanel {
     
     
     public void initLine(String epaisseur){
-       // Graphics g1 = (Graphics2D)g ; 
+       // selection de l'epaisseur du pinceau en fonction du bouton a ecouter
         switch (epaisseur)
         {
             case "Gros" : line1 = new BasicStroke(4.0f);

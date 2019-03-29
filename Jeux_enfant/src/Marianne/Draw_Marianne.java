@@ -20,114 +20,114 @@ import javax.swing.border.TitledBorder;
  */
 public class Draw_Marianne extends JPanel {
 
-    // JPanel option ; // declaration d'objet
     Display_drawing leDessin;
-    Bouton delete, gomme ; 
-    JPanel choicePen , pen ; 
+    Bouton delete, gomme;
+    JPanel choicePen, pen;
     JPanel menu;
     JPanel choiceColor;
     JPanel effacer;
-   // Graphics g;
-    Bouton jb ; 
-    TitledBorder title , title2 , title3; 
-    //Draw_Marianne tableau = new Draw_Marianne(); 
+    Bouton jb;
+    TitledBorder title, title2, title3;
+    
 
     public Draw_Marianne() {
         this.setName("Dessin"); // constructeur signé
-        // JPanel option = new JPanel(); // je cree un objet MenuPanel
         this.initDraw();
     }
 
     public void initDraw() {
+        
+        // vide l'objet
         this.removeAll();
+        // objet de support pour l'affichage du dessin
         leDessin = new Display_drawing();
+        // support pour les differents boutons de couleur
         choiceColor = new JPanel();
         choiceColor.setLayout(new GridLayout(0, 2, 2, 2));
-        title2 = new TitledBorder("Choix de la couleur") ;
+        // creation de titre et cadre
+        title2 = new TitledBorder("Choix de la couleur");
         title3 = new TitledBorder("");
+        // ajout de titleBorder
         choiceColor.setBorder(title2);
+        // support pour les boutons d'effacement
         effacer = new JPanel();
         effacer.setLayout(new BorderLayout());
         delete = new Bouton("Effacer");
-        
-        gomme = new Bouton ("Gomme"); 
+
+        gomme = new Bouton("Gomme");
+        // creation d'un ecouteur pour le bouton gomme
         gomme.addActionListener(new ActionListener() {
             @Override
-                public void actionPerformed(ActionEvent e) {
-                leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
-                leDessin.setCouleur(((Bouton)e.getSource()).getText());
+            public void actionPerformed(ActionEvent e) {
+                leDessin.setEpaisseur(((Bouton) e.getSource()).getText());
+                leDessin.setCouleur(((Bouton) e.getSource()).getText());
                 leDessin.setShape("Gomme");
-                }
+            }
         });
         effacer.setBorder(title3);
-        effacer.add(delete, BorderLayout.NORTH); 
-        effacer.add(gomme, BorderLayout.SOUTH); 
+        effacer.add(delete, BorderLayout.NORTH);
+        effacer.add(gomme, BorderLayout.SOUTH);
+        // creation ecouteur pour bouton effacer
         delete.addActionListener(new ActionListener() {
-           @Override
+            @Override
             public void actionPerformed(ActionEvent e) {
                 initDraw();
             }
         });
-        
+
         choicePen = new JPanel();
-        title = new TitledBorder("Choix du crayon") ; 
+        title = new TitledBorder("Choix du crayon");
         choicePen.setLayout(new BorderLayout());
-        choicePen.setBorder(title); 
+        choicePen.setBorder(title);
         pen = new JPanel();
-        pen.setLayout(new GridLayout(0,2,2,2));
-        String [] differentPen = {
-            "Gros" , "Fin"
-        }; 
-        
-        for (String s : differentPen)
-        {
-            jb  = new Bouton(s); 
-            pen.add(jb) ; 
+        pen.setLayout(new GridLayout(0, 2, 2, 2));
+
+        String[] differentPen = {
+            "Gros", "Fin"
+        };
+        // boucle for etendue pour la creation des boutons et ajout d'ecouteur 
+        for (String s : differentPen) {
+            jb = new Bouton(s);
+            pen.add(jb);
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
-                leDessin.setEpaisseurReminder(((Bouton)e.getSource()).getText());
-                
-                if (leDessin.getCouleur().equals("Gomme"))
-                    {
+                    leDessin.setEpaisseur(((Bouton) e.getSource()).getText());
+                    leDessin.setEpaisseurReminder(((Bouton) e.getSource()).getText());
+
+                    if (leDessin.getCouleur().equals("Gomme")) {
                         leDessin.setCouleur(leDessin.getCouleurReminder());
                     }
-                    if (leDessin.getShape().equals("Gomme"))
-                    {
+                    if (leDessin.getShape().equals("Gomme")) {
                         leDessin.setShape(leDessin.getShapeReminder());
                     }
-                
+
                 }
-            
-            }); 
+
+            });
         }
-        String [] differentShape = {
-            "Rond" , "Carré"
-        }; 
-        for (String s : differentShape)
-        {
-            jb  = new Bouton(s);
+        String[] differentShape = {
+            "Rond", "Carré"
+        };
+        // boucle for etendue pour la creation des boutons et ajout d'ecouteur 
+        for (String s : differentShape) {
+            jb = new Bouton(s);
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                leDessin.setShape(((Bouton)e.getSource()).getText());
-                leDessin.setShapeReminder(((Bouton)e.getSource()).getText());
-                if (leDessin.getCouleur().equals("Gomme"))
-                    {
+                    leDessin.setShape(((Bouton) e.getSource()).getText());
+                    leDessin.setShapeReminder(((Bouton) e.getSource()).getText());
+                    if (leDessin.getCouleur().equals("Gomme")) {
                         leDessin.setCouleur(leDessin.getCouleurReminder());
                     }
-                    if (leDessin.getEpaisseur().equals("Gomme"))
-                    {
+                    if (leDessin.getEpaisseur().equals("Gomme")) {
                         leDessin.setEpaisseur(leDessin.getEpaisseurReminder());
                     }
-                
                 }
-            
-            }); 
-            pen.add(jb) ; 
+            });
+            pen.add(jb);
         }
-        choicePen.add(pen, BorderLayout.CENTER); 
+        choicePen.add(pen, BorderLayout.CENTER);
         menu = new JPanel();
         menu.setLayout(new BorderLayout());
         //menu.add(color, BorderLayout.NORTH) ; 
@@ -138,39 +138,39 @@ public class Draw_Marianne extends JPanel {
             "violet", "vert"
 
         };
-
+        // boucle for etendue pour la creation des boutons et ajout d'ecouteur 
         for (String s : differentColor) {
             jb = new Bouton(s);
-            switch(s){
+            switch (s) {
                 case "bleu":
                     jb.setBackground(Color.blue);
                     jb.setForeground(Color.white);
-                break;    
+                    break;
                 case "rouge":
                     jb.setBackground(Color.red);
-                break;
+                    break;
                 case "jaune":
                     jb.setBackground(Color.yellow);
-                break;    
+                    break;
                 case "gris":
                     jb.setBackground(Color.gray);
-                break;
+                    break;
                 case "noir":
-                    jb.setBackground(Color.black); 
+                    jb.setBackground(Color.black);
                     jb.setForeground(Color.white);
-                break;    
+                    break;
                 case "rose":
                     jb.setBackground(Color.pink);
-                break;
+                    break;
                 case "violet":
                     jb.setBackground(Color.magenta);
-                break;    
+                    break;
                 case "vert":
                     jb.setBackground(Color.green);
-                break;
+                    break;
             }
             choiceColor.add(jb);
-            
+
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -178,22 +178,20 @@ public class Draw_Marianne extends JPanel {
                     // lance la fonction sur chaque bouton 
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
-                    leDessin.setCouleur(((Bouton)e.getSource()).getText());
-                    leDessin.setCouleurReminder(((Bouton)e.getSource()).getText());
-                    if (leDessin.getEpaisseur().equals("Gomme"))
-                    {
+                    leDessin.setCouleur(((Bouton) e.getSource()).getText());
+                    leDessin.setCouleurReminder(((Bouton) e.getSource()).getText());
+                    if (leDessin.getEpaisseur().equals("Gomme")) {
                         leDessin.setEpaisseur(leDessin.getEpaisseurReminder());
                     }
-                    if (leDessin.getShape().equals("Gomme"))
-                    {
+                    if (leDessin.getShape().equals("Gomme")) {
                         leDessin.setShape(leDessin.getShapeReminder());
                     }
-                    
+
                 }
             });
-           
         }
 
+        // implantation
         effacer.add(delete, BorderLayout.NORTH);
         menu.add(effacer, BorderLayout.SOUTH);
         menu.add(choicePen, BorderLayout.CENTER);
@@ -202,7 +200,4 @@ public class Draw_Marianne extends JPanel {
         this.add(leDessin, BorderLayout.CENTER);
     }
 
-    
-   
- }
-
+}
