@@ -56,6 +56,8 @@ public final class Question_zine extends JPanel{
             if(liste1.isEmpty())
             {
                 text = "C'était la dernière question !";
+                this.remove(reponse);
+                this.remove(Bouton);
             }
             else
             {
@@ -68,6 +70,8 @@ public final class Question_zine extends JPanel{
                if(liste2.isEmpty())
             {
                 text = "C'était la dernière question !";
+                this.remove(reponse);
+                this.remove(Bouton);
             }
             else
             {
