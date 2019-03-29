@@ -11,9 +11,10 @@ import java.util.List;
 
 /**
  *
- * @author stagldnr
+ * @author Julien
  */
 public interface DAO_Julien<T> {
+    //Création de la connexion 
     Connection connection = Connection_Julien.getInstance();
     /**
      * 
@@ -21,14 +22,19 @@ public interface DAO_Julien<T> {
      * @return L'objet ayant l'identifiant id
      */
 
+    //Permet de récupérer l'objet via son ID
     T find(Integer id);
     
+    //Permet la création d'une entrée dans la table
     T create(T obj);
     
+    //Permet la suppression  d'une entrée de la table
     void deleted(T obj);
     
+    //Permet de mettre à jour les données d'une entré dans la table
     T update(T obj);
     
+    //Permet de récuperer Toutes les entrées de la table
     List<T> findAll();
     
     

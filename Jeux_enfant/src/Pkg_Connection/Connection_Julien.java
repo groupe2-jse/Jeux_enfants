@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import java.sql.Driver ; 
 /**
  *
- * @author stagldnr
+ * @author Julien 
  */
 public class Connection_Julien {
     
@@ -29,6 +29,8 @@ public class Connection_Julien {
         {
            
             Properties config = new Properties();
+            //Tentative de recherche les données de la base de donnée 
+            
             try(InputStream in = Connection_Julien.class.getResourceAsStream("/Pkg_Ressource/config.properties")){
                     config.load(in);
             }
@@ -38,12 +40,14 @@ public class Connection_Julien {
                 System.exit(1);
             }
             
+            //Création de l'URL pour la connexion 
             String url = "jdbc:"+ config.getProperty("sgbdr")
                     +"://"+config.getProperty("host")
                     +":"+ config.getProperty("port")
                     +"/"+ config.getProperty("database");
             System.out.println(url);
             try{
+                //Tentative de connexion 
                 connection = DriverManager.getConnection(url, config);
             }catch(SQLException ex){
                 Logger.getLogger(Connection_Julien.class.getName()).log(Level.SEVERE, null,ex);

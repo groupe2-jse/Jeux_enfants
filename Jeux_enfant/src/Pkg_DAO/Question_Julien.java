@@ -7,7 +7,7 @@ package Pkg_DAO;
 
 /**
  *
- * @author stagldnr
+ * @author Julien 
  */
 
 import java.sql.PreparedStatement;
@@ -28,13 +28,19 @@ public class Question_Julien implements DAO_Julien<Question>{
     @Override
     public Question find(Integer id) {
 
+        //Création de l'objet Question
         Question retObj = null;
         
         try{
+            //réation de la requete SQL
             String sql = "SELECT * FROM "
                + table
                + " WHERE id = ?";
+            
+            //Création de l'objet de type PreparedStatement 
+            //pour avoir accés au méthode 
            PreparedStatement pstmt;
+           //Requete SQL 
             pstmt = connection.prepareStatement(sql);
            pstmt.setInt(1, id);
            ResultSet rs = pstmt.executeQuery();
@@ -123,7 +129,7 @@ public class Question_Julien implements DAO_Julien<Question>{
     @Override
     public List<Question> findAll() {
 
-         ArrayList<Question> retObj = new ArrayList<>();
+        ArrayList<Question> retObj = new ArrayList<>();
         String sql = "SELECT * FROM "
                + table;
         try{
