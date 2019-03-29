@@ -55,7 +55,8 @@ public class Draw_Marianne extends JPanel {
             @Override
                 public void actionPerformed(ActionEvent e) {
                 leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
-                leDessin.setCouleur(((Bouton)e.getSource()).getText()); 
+                leDessin.setCouleur(((Bouton)e.getSource()).getText());
+                leDessin.setShape("Gomme");
                 }
         });
         effacer.setBorder(title3);
@@ -87,9 +88,44 @@ public class Draw_Marianne extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                 leDessin.setEpaisseur(((Bouton)e.getSource()).getText());
                 leDessin.setEpaisseurReminder(((Bouton)e.getSource()).getText());
+                
+                if (leDessin.getCouleur().equals("Gomme"))
+                    {
+                        leDessin.setCouleur(leDessin.getCouleurReminder());
+                    }
+                    if (leDessin.getShape().equals("Gomme"))
+                    {
+                        leDessin.setShape(leDessin.getShapeReminder());
+                    }
+                
                 }
             
             }); 
+        }
+        String [] differentShape = {
+            "Rond" , "Carré"
+        }; 
+        for (String s : differentShape)
+        {
+            jb  = new Bouton(s);
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                leDessin.setShape(((Bouton)e.getSource()).getText());
+                leDessin.setShapeReminder(((Bouton)e.getSource()).getText());
+                if (leDessin.getCouleur().equals("Gomme"))
+                    {
+                        leDessin.setCouleur(leDessin.getCouleurReminder());
+                    }
+                    if (leDessin.getEpaisseur().equals("Gomme"))
+                    {
+                        leDessin.setEpaisseur(leDessin.getEpaisseurReminder());
+                    }
+                
+                }
+            
+            }); 
+            pen.add(jb) ; 
         }
         choicePen.add(pen, BorderLayout.CENTER); 
         menu = new JPanel();
@@ -143,9 +179,14 @@ public class Draw_Marianne extends JPanel {
                     // getSouce = le bouton sur lequel on clique
                     // getTexte = renvoie titre string[]
                     leDessin.setCouleur(((Bouton)e.getSource()).getText());
+                    leDessin.setCouleurReminder(((Bouton)e.getSource()).getText());
                     if (leDessin.getEpaisseur().equals("Gomme"))
                     {
                         leDessin.setEpaisseur(leDessin.getEpaisseurReminder());
+                    }
+                    if (leDessin.getShape().equals("Gomme"))
+                    {
+                        leDessin.setShape(leDessin.getShapeReminder());
                     }
                     
                 }

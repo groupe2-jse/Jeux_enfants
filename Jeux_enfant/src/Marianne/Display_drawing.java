@@ -27,8 +27,36 @@ public class Display_drawing extends JPanel {
 
     
     Graphics2D g1;
-    String couleur, epaisseur, epaisseurReminder;
+    String couleur, epaisseur, epaisseurReminder, shape, shapeReminder, couleurReminder;
      BasicStroke line1; 
+
+    public String getCouleurReminder() {
+        return couleurReminder;
+    }
+
+    public void setCouleurReminder(String couleurReminder) {
+        this.couleurReminder = couleurReminder;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
+
+    public String getShapeReminder() {
+        return shapeReminder;
+    }
+
+    public void setShapeReminder(String shapeReminder) {
+        this.shapeReminder = shapeReminder;
+    }
 
     public void setEpaisseurReminder(String epaisseurReminder) {
         this.epaisseurReminder = epaisseurReminder;
@@ -51,6 +79,8 @@ public class Display_drawing extends JPanel {
         couleur="noir";
         epaisseur = "Fin" ;
         epaisseurReminder = "Fin";
+        shape = "Fin";
+        shapeReminder = "Fin";
         affiche.setBackground(Color.WHITE);
 
         this.addMouseListener(new MouseAdapter() { // mouvement de la souris
@@ -69,7 +99,8 @@ public class Display_drawing extends JPanel {
                 g1 = (Graphics2D)g; 
                 
                initColor(g,couleur);
-               initLine ( epaisseur); 
+               initLine ( epaisseur);
+               initShape(shape);
                
                
                 
@@ -78,6 +109,25 @@ public class Display_drawing extends JPanel {
                 x = e.getX();
                 y = e.getY();
 
+            }
+
+            
+            
+            private void initShape(String pShape) {
+                switch (pShape)
+        {
+            case "Carré" : g1.drawRect(x,y,4,4);
+                         shape= "Carré" ; break; 
+                         
+            case "Rond"  : g1.drawOval(x,y,4,4);
+                        shape= "Rond" ; break;
+                        
+            case "Gomme": g1.drawRect(x,y,6,6);
+                        shape= "Gomme" ;
+            
+//            case "Fin": g1.drawRect(x,y,1,1);
+//                        shape= "Fin" ;
+        }
             }
         });
           
@@ -141,6 +191,11 @@ public class Display_drawing extends JPanel {
             case "Gros" : line1 = new BasicStroke(4.0f);
                          g1.setStroke(line1);
                          this.epaisseur= "Gros" ; break; 
+                         
+            case "Fin" : line1 = new BasicStroke(1.0f);
+                         g1.setStroke(line1);
+                         this.epaisseur= "Fin" ;
+                         this.shape = "Fin"; break;
                          
             case "Gomme": line1 = new BasicStroke(15.0f);
                         g1.setStroke(line1);
