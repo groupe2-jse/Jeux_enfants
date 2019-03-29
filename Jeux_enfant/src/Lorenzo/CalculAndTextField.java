@@ -23,6 +23,7 @@ public class CalculAndTextField extends JPanel{
     JTextField textField;
     Font font;
     
+    //CREATION ZONE D'AFICHAGE DU CALCUL ET DE ZONE DE SAISIE
     public CalculAndTextField(String calcul, int size, Font font){
         this.font = font;
         this.calcul= new JLabel(calcul);
