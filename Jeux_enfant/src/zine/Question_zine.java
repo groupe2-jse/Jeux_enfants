@@ -82,6 +82,9 @@ public final class Question_zine extends JPanel{
  
     public void initQuestion(int niveau) {
         this.removeAll();
+        this.repaint();
+        question = new JLabel("");
+        question.setText("");
         this.setName("Questions");
         reponse = new LabelAndField("Réponse");
         reponse.getTextField().addActionListener(new ActionListener(){
@@ -140,7 +143,7 @@ public final class Question_zine extends JPanel{
         daop = new Question_Julien();
         liste1  = daop.findNiveau1(niveau);
         liste2  = daop.findAll();
-        question = new JLabel("");
+        
         rechargeQuestion(niveau);
         this.setLayout(new BoxLayout(this, Y_AXIS));
         this.add(question);      
