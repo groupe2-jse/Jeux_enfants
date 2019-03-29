@@ -162,7 +162,7 @@ public final class Question_zine extends JPanel{
         switch(niveau)
         {
             case 1:
-                if (liste1.get(rnd).getReponse().toLowerCase().equals(answer.toLowerCase()))
+                if ((liste1.get(rnd).getReponse()).toLowerCase().equals(answer.toLowerCase()))
                 {
                     resultat.setText("Bravo, bonne réponse");
                     alreadyShown=true;
